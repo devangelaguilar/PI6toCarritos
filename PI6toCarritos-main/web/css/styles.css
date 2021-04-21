@@ -1,0 +1,60 @@
+*{
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    background-color: #560856;
+}
+
+h1{
+    color: #560856;
+}
+
+#login{
+    margin: 0 auto;
+    border-radius: 10px;
+    margin-top: 5%;
+    background-color: white;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+}
+
+#formulario{
+    margin: 30px;
+}
+
+#loginBtn{
+    border: 0;
+    background-color: #560856;
+    color: white;
+    width: 200px;
+    height: 25px;
+    border-radius: 10px;
+}
+
+#name{
+    margin-top: 30px;
+}
+
+#fpsw{
+    margin-bottom: 30px;
+}
+
+.inputs{
+    border-radius: 10px;
+    border: none;
+    border: solid 1px;
+    border-color: black;
+    height: 20px;
+    transition: 0.6s linear;
+}
+
+.inputs:focus{
+    border-color: #560856;
+    border-width: 2px;
+    transition: 0.6s linear;
+}
