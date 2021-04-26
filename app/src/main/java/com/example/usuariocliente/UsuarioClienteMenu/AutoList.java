@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.example.usuariocliente.Adapter.AutosAdapter;
+import com.example.usuariocliente.Login.Login;
 import com.example.usuariocliente.Models.Auto;
 import com.example.usuariocliente.Models.Globals;
 import com.example.usuariocliente.Models.Handler;
@@ -72,7 +73,7 @@ public class AutoList extends AppCompatActivity {
             startActivity(i);
         });
         CerrarSesion.setOnClickListener(v -> {
-            i = new Intent(getApplicationContext(), UsuarioClienteMenu.class);
+            i = new Intent(getApplicationContext(), Login.class);
             Toast.makeText(getApplicationContext(), "Regresar a Login", Toast.LENGTH_SHORT).show();
             startActivity(i);
         });

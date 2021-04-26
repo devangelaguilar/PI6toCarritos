@@ -83,6 +83,7 @@ public class Registro extends AppCompatActivity {
 
                 }
                 if (  (lengthtel==10) && (isEmailValid(correo.getText().toString()))){
+                    Toast.makeText(Registro.this, "Registro en progreso", Toast.LENGTH_SHORT).show();
                     registrar();
                 }
 
@@ -115,6 +116,10 @@ public class Registro extends AppCompatActivity {
                         i = new Intent(Registro.this, Login.class);
                         startActivity(i);
                     }
+
+                        Toast.makeText(Registro.this, "Registro ."+response, Toast.LENGTH_LONG).show();
+
+
 
                 }, error -> {
                     // En caso de tener algun error en la obtencion de los datos

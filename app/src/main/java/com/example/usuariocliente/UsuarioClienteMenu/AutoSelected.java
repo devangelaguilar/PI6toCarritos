@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.usuariocliente.Models.Auto;
 import com.example.usuariocliente.R;
 import com.example.usuariocliente.UsuarioClienteConfiguracion.UsuarioClienteUserOptions;
 import com.example.usuariocliente.UsuarioClienteHistorial.HistorialSelected;
@@ -15,6 +17,7 @@ import com.example.usuariocliente.UsuarioClienteHistorial.UsuarioClienteHistoria
 
 public class AutoSelected extends AppCompatActivity {
     ImageView Back,Historial,Usuario,CerrarSesion;
+    TextView txtmodelo, txtcolor, tipo1, tipo2, tipo3, tipo4, tipo5, tipo6, tipo7;
     Intent i;
 
     @Override
@@ -26,6 +29,50 @@ public class AutoSelected extends AppCompatActivity {
         Historial = findViewById(R.id.historialicon);
         Usuario = findViewById(R.id.Usuarioicon);
         CerrarSesion = findViewById(R.id.cerrarsesionicon);
+
+        //Data in sheet
+        txtmodelo=findViewById(R.id.txtmodelo);
+
+        txtcolor=findViewById(R.id.txtcolor);
+
+        tipo1=findViewById(R.id.tipo1);
+
+        tipo2=findViewById(R.id.tipo2);
+
+        tipo3=findViewById(R.id.tipo3);
+
+        tipo4=findViewById(R.id.tipo4);
+
+        tipo5=findViewById(R.id.tipo5);
+
+        tipo6=findViewById(R.id.tipo6);
+
+        tipo7=findViewById(R.id.tipo7);
+
+
+
+
+        //end Data in Sheet
+
+
+        Intent intent = getIntent();
+        Auto autodata = (Auto) intent.getSerializableExtra("auto");
+        Toast.makeText(this, ""+autodata.getColor(), Toast.LENGTH_SHORT).show();
+
+        //Build Data Sheet
+        txtmodelo.setText(autodata.getModelo());
+        txtcolor.setText(autodata.getColor());
+        tipo1.setText(autodata.getTipo_vehiculo());
+        tipo2.setText(autodata.getPlacas());
+        tipo3.setText(autodata.getFoto());
+        tipo4.setText("Disponible");
+        tipo5.setText(autodata.getTransmision());
+        tipo6.setText(autodata.getPrecio());
+        tipo7.setText(autodata.getPrecio());
+
+
+
+        //END Build Data Sheet
 
 
 

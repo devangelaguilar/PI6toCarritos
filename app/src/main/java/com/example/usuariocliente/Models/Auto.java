@@ -1,6 +1,10 @@
 package com.example.usuariocliente.Models;
 
-public class Auto {
+
+import java.io.Serializable;
+
+public class Auto implements Serializable {
+
     int id_vehiculo;
     String tipo_vehiculo;
     String placas;

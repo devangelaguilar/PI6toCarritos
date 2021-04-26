@@ -67,7 +67,7 @@ tools:context=".Registro.Registro">
                     android:textStyle="bold"
                     android:layout_below="@id/edit_apellido_p"
                     android:layout_marginTop="10dp"
-                    android:hint="Apellido paterno" />
+                    android:hint="Apellido materno" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout

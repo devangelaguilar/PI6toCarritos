@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.usuariocliente.Models.Auto;
 import com.example.usuariocliente.Models.Globals;
 import com.example.usuariocliente.R;
+import com.example.usuariocliente.UsuarioClienteMenu.AutoSelected;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +57,11 @@ public class AutosAdapter extends RecyclerView.Adapter<AutosAdapter.AutoViewHold
         holder.cv.setOnClickListener(v -> {
             Auto auto = autosList.get(position);
             Toast.makeText(c, auto.getModelo(), Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(c, AutoSelected.class);
+            i.putExtra("auto", auto);
+            c.startActivity(i);
+
+
         });
         autosList = Globals.showList(c);
     }
