@@ -1,10 +1,12 @@
 package com.example.usuariocliente.UsuarioClienteMenu;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -16,6 +18,8 @@ import com.example.usuariocliente.UsuarioClienteHistorial.UsuarioClienteHistoria
 public class UsuarioClienteMenu extends AppCompatActivity {
     ImageView Back,Historial,Usuario,CerrarSesion;
     Intent i;
+    CardView ubicacion, fechas;
+    Button buscar;
 
     ListView AutosDisponibles;
 
@@ -28,8 +32,18 @@ public class UsuarioClienteMenu extends AppCompatActivity {
         Historial = findViewById(R.id.historialicon);
         Usuario = findViewById(R.id.Usuarioicon);
         CerrarSesion = findViewById(R.id.cerrarsesionicon);
-        AutosDisponibles = findViewById(R.id.AutosDisponiblesLista);
+        buscar = findViewById(R.id.btn_buscar);
+        ubicacion = findViewById(R.id.ubicacion);
+        fechas = findViewById(R.id.fechas);
 
+        buscar.setOnClickListener(v -> {
+            i = new Intent(getApplicationContext(), AutoList.class);
+            startActivity(i);
+        });
+
+        ubicacion.setOnClickListener(v -> { Toast.makeText(getApplicationContext(), "ubicacion", Toast.LENGTH_SHORT).show(); });
+
+        fechas.setOnClickListener(v -> { Toast.makeText(getApplicationContext(), "fechas", Toast.LENGTH_SHORT).show(); });
 
         //Navegation menu
 

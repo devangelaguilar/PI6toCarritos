@@ -28,7 +28,7 @@ public class UsuarioClienteUserOptions extends AppCompatActivity {
         Historial = findViewById(R.id.historialicon);
         Usuario = findViewById(R.id.Usuarioicon);
         CerrarSesion = findViewById(R.id.cerrarsesionicon);
-        AutosDisponibles = findViewById(R.id.AutosDisponiblesLista);
+
 
 
         //Navegation menu

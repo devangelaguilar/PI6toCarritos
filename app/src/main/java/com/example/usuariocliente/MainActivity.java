@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                                                 //If Usuario Cliente TRUE
-                                    Intent intent = new Intent(MainActivity.this, AutoList.class); //Aqu[i debemos converger para decidir si va a Driver o Usuario Cliente
+                                    Intent intent = new Intent(MainActivity.this, UsuarioClienteMenu.class); //Aqu[i debemos converger para decidir si va a Driver o Usuario Cliente
                                     intent.putExtra("id_Usuario", id_Usuario);
                                     intent.putExtra("nombres", nombres);
                                     intent.putExtra("apellido_paterno", apellido_paterno);

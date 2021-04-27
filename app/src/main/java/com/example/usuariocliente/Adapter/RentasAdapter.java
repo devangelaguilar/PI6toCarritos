@@ -15,31 +15,32 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.usuariocliente.Models.Auto;
 import com.example.usuariocliente.Models.Globals;
+import com.example.usuariocliente.Models.Renta;
 import com.example.usuariocliente.R;
-
+import com.example.usuariocliente.UsuarioClienteMenu.AutoSelected;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class RentasAdapter extends RecyclerView.Adapter<RentasAdapter.AutoViewHolder> {
-    List<Auto> autos;
+    List<Renta> rentas;
 
-    List<Auto> autosList;
-    ArrayList<Auto> arrayList;
+    List<Renta> rentasList;
+    ArrayList<Renta> arrayList;
     Context c;
 
-    public RentasAdapter(List<Auto> autos) {
-        this.autos = autos;
+    public RentasAdapter(List<Renta> rentas) {
+        this.rentas = rentas;
         this.arrayList = new ArrayList<>();
-        this.arrayList.addAll(autos);
+        this.arrayList.addAll(rentas);
     }
 
     @NonNull
     @Override
-    public RentasAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.rent_card, parent, false);
-        RentasAdapter rvh = new RentasAdapter;
+    public RentasAdapter.AutoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.auto_card, parent, false);
+        RentasAdapter.AutoViewHolder rvh = new RentasAdapter.AutoViewHolder(v);
         c = v.getContext();
         return rvh;
     }
@@ -47,30 +48,30 @@ public class RentasAdapter extends RecyclerView.Adapter<RentasAdapter.AutoViewHo
     @Override
     public void onBindViewHolder(@NonNull AutoViewHolder holder, int position) {
 
-        holder.nombre.setText(autos.get(position).getModelo());
-        holder.transmision.setText(autos.get(position).getTransmision());
+        holder.nombre.setText(rentas.get(position).getModelo());
+        holder.transmision.setText(rentas.get(position).getTransmision());
         holder.puertas.setText("4 puertas"); //Insertar un if donde cheque cuantas puertas tiene dependiendo del tipo de auto
         holder.pasajeros.setText("5 pasajeros");
-        holder.precio.setText("$ " + autos.get(position).getPrecio());
+        holder.precio.setText("$ " + rentas.get(position).getPrecio());
         //poner foto
-        autosList = new ArrayList<>();
+        rentasList = new ArrayList<>();
         holder.cv.setOnClickListener(v -> {
-            Auto auto = autosList.get(position);
+            Auto auto = rentasList.get(position);
             Toast.makeText(c, auto.getModelo(), Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(c, AutoSelected.class);
+            Intent i = new Intent(c, Rentaselected.class);
             i.putExtra("auto", auto);
             c.startActivity(i);
 
 
         });
-        autosList = Globals.showList(c);
+        rentasList = Globals.showList(c);
     }
 
 
 
     @Override
     public int getItemCount() {
-        return autos.size();
+        return rentas.size();
     }
 
     public static class AutoViewHolder extends RecyclerView.ViewHolder{

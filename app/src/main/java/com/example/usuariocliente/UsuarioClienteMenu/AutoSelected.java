@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ public class AutoSelected extends AppCompatActivity {
     ImageView Back,Historial,Usuario,CerrarSesion;
     TextView txtmodelo, txtcolor, tipo1, tipo2, tipo3, tipo4, tipo5, tipo6, tipo7;
     Intent i;
+    Button btn_rentar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class AutoSelected extends AppCompatActivity {
         Historial = findViewById(R.id.historialicon);
         Usuario = findViewById(R.id.Usuarioicon);
         CerrarSesion = findViewById(R.id.cerrarsesionicon);
+        btn_rentar = findViewById(R.id.btnPagar);
 
         //Data in sheet
         txtmodelo=findViewById(R.id.txtmodelo);
@@ -48,12 +51,7 @@ public class AutoSelected extends AppCompatActivity {
         tipo6=findViewById(R.id.tipo6);
 
         tipo7=findViewById(R.id.tipo7);
-
-
-
-
         //end Data in Sheet
-
 
         Intent intent = getIntent();
         Auto autodata = (Auto) intent.getSerializableExtra("auto");
@@ -69,17 +67,7 @@ public class AutoSelected extends AppCompatActivity {
         tipo5.setText(autodata.getTransmision());
         tipo6.setText(autodata.getPrecio());
         tipo7.setText(autodata.getPrecio());
-
-
-
         //END Build Data Sheet
-
-
-
-
-
-
-
 
         //NAvegation Menu
 
@@ -106,6 +94,9 @@ public class AutoSelected extends AppCompatActivity {
 
         //Navegation Menu
 
+        btn_rentar.setOnClickListener(v -> {
+            //Enviar todos los datos a la tabla renta_auto***********************************
+        });
 
 
     }
