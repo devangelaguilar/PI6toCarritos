@@ -1,11 +1,12 @@
-package com.example.usuariocliente.Registro;
+package com.example.usuariocliente;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputFilter;
-import android.text.Spanned;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,14 +16,12 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.usuariocliente.Login.Login;
 import com.example.usuariocliente.Models.Globals;
-import com.example.usuariocliente.R;
+import com.example.usuariocliente.UsuarioClienteMenu.UsuarioClienteMenu;
 
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -83,7 +82,7 @@ public class Registro extends AppCompatActivity {
 
                 }
                 if (  (lengthtel==10) && (isEmailValid(correo.getText().toString()))){
-                    Toast.makeText(Registro.this, "Registro en progreso", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(Registro.this, "Registro en progreso", Toast.LENGTH_SHORT).show();
                     registrar();
                 }
 
@@ -97,39 +96,22 @@ public class Registro extends AppCompatActivity {
 
     }
     public void registrar() {
-        StringRequest stringRequest;
-        stringRequest = new StringRequest(Request.Method.POST, Globals.ip + "registrar.php",
-                response -> {
-                    // En este apartado se programa lo que deseamos hacer en caso de no haber errores
 
-                    if(response.equals("ERROR 1")) {
-                        Toast.makeText(Registro.this, "Se deben de llenar todos los campos", Toast.LENGTH_SHORT).show();
-                        i = new Intent(Registro.this, Registro.class);
-                        startActivity(i);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Globals.ip + "registrar.php", response -> {
+            if (response.equals("MENSAJE")){
+                i = new Intent(getApplicationContext(), UsuarioClienteMenu.class);
+                setSharedPreferences(nombres.getText().toString(), apellido_paterno.getText().toString(), apellido_materno.getText().toString(), correo.getText().toString(), telefono.getText().toString(), fecha_de_nacimiento.getText().toString());
+                startActivity(i);
+            } else {
+                Toast.makeText(getApplicationContext(), "" + response, Toast.LENGTH_SHORT).show();
+            }
 
-                    } else if(response.equals("ERROR 2")) {
-                        Toast.makeText(Registro.this, "Usuario ya existente, emplee otro correo", Toast.LENGTH_SHORT).show();
-                        correo.setText("");
-
-                    } else if(response.equals("MENSAJE")) {
-                        Toast.makeText(Registro.this, "Registro exitoso.", Toast.LENGTH_LONG).show();
-                        i = new Intent(Registro.this, Login.class);
-                        startActivity(i);
-                    }
-
-                        Toast.makeText(Registro.this, "Registro ."+response, Toast.LENGTH_LONG).show();
-
-
-
-                }, error -> {
-                    // En caso de tener algun error en la obtencion de los datos
-                    Toast.makeText(Registro.this, "ERROR CON LA CONEXION", Toast.LENGTH_LONG).show();
-                }){
+        }, error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show()){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<>();
 
                 // En este metodo se hace el envio de valores de la aplicacion al servidor
-                Map<String, String> parametros = new Hashtable<String, String>();
                 parametros.put("correo", correo.getText().toString());
                 parametros.put("password", password.getText().toString());
                 parametros.put("nombres", nombres.getText().toString());
@@ -139,13 +121,10 @@ public class Registro extends AppCompatActivity {
                 parametros.put("fecha_de_nacimiento", fecha_de_nacimiento.getText().toString());
                 parametros.put("licencia", licencia.getText().toString());
 
-
-
                 return parametros;
             }
         };
-
-        RequestQueue requestQueue = Volley.newRequestQueue(Registro.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(stringRequest);
     }
     InputFilter filter = (source, start, end, dest, dstart, dend) -> {
@@ -185,5 +164,20 @@ public class Registro extends AppCompatActivity {
             return true;
         else
             return false;
+    }
+
+    public void setSharedPreferences(String nombres, String apellido_paterno, String apellido_materno, String mail, String telefono, String fecha_de_nacimiento) {
+        SharedPreferences preferences = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("nombres", nombres);
+        editor.putString("apellido_paterno", apellido_paterno);
+        editor.putString("apellido_materno", apellido_materno);
+        editor.putString("correo", mail);
+        editor.putString("telefono", telefono);
+        editor.putString("fecha_de_nacimiento", fecha_de_nacimiento);
+        editor.putBoolean("sesion_iniciada", Boolean.TRUE);
+
+        editor.apply();
     }
 }

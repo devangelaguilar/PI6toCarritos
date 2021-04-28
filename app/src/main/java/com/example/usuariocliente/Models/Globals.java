@@ -1,6 +1,7 @@
 package com.example.usuariocliente.Models;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
@@ -10,8 +11,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class Globals {
     public static String ip = "https://cinderellaride.000webhostapp.com/assets/php/";
@@ -71,5 +76,34 @@ public class Globals {
         }, error -> { });
         Handler.getInstance(c).addToRequestQueue(stringRequest);
         return autosList;
+    }
+
+    public static String getDayOfWeek(Date date) {
+        Calendar c = Calendar.getInstance(TimeZone.getTimeZone("GMT-5"));
+        c.setTime(date);
+        String dayWeekText = new SimpleDateFormat("EEEE").format(date);
+        return  dayWeekText;
+    }
+
+    public static String getMonth(Date date) {
+        Calendar c = Calendar.getInstance(TimeZone.getTimeZone("GMT-5"));
+        c.setTime(date);
+        String month = new SimpleDateFormat("MMMM").format(date);
+        return month;
+    }
+
+    public static String getDayNumber(Date date) {
+        Calendar c = Calendar.getInstance(TimeZone.getTimeZone("GMT-5"));
+        c.setTime(date);
+        String day = new SimpleDateFormat("dd").format(date);
+        return day;
+    }
+
+    public static void cerrarSesion(Context c) {
+        SharedPreferences preferences = c.getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("sesion_iniciada", Boolean.FALSE);
+        editor.apply();
     }
 }

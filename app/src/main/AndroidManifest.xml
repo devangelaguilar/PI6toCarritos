@@ -15,7 +15,7 @@
             android:name=".AutoDataManagement.AutoSelected"
             android:label="@string/title_activity_auto_selected"
             android:theme="@style/Theme.UsuarioCliente.NoActionBar"></activity>
-        <activity android:name=".Registro.Registro" />
+        <activity android:name=".Registro" />
         <activity android:name=".Login.Login" />
         <activity android:name=".UsuarioDriverInfo.UsuarioDriverInfo" />
         <activity android:name=".UsuarioDriverHistorial.HistorialSelectedDriver" />

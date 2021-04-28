@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.example.usuariocliente.Adapter.AutosAdapter;
-import com.example.usuariocliente.Login.Login;
+import com.example.usuariocliente.MainActivity;
 import com.example.usuariocliente.Models.Auto;
 import com.example.usuariocliente.Models.Globals;
 import com.example.usuariocliente.Models.Handler;
@@ -73,7 +73,7 @@ public class AutoList extends AppCompatActivity {
             startActivity(i);
         });
         CerrarSesion.setOnClickListener(v -> {
-            i = new Intent(getApplicationContext(), Login.class);
+            i = new Intent(getApplicationContext(), MainActivity.class);
             Toast.makeText(getApplicationContext(), "Regresar a Login", Toast.LENGTH_SHORT).show();
             startActivity(i);
         });
@@ -91,7 +91,9 @@ public class AutoList extends AppCompatActivity {
                     JSONObject autoObj = array.getJSONObject(i);
                     Auto a = new Auto(autoObj.getInt("id_vehiculo"), Globals.getTipo_vehiculo(autoObj.getInt("tipo_vehiculo")), autoObj.getString("placas"), autoObj.getString("modelo"),
                             Globals.getColor(autoObj.getInt("color")), autoObj.getString("foto"), autoObj.getInt("status"), autoObj.getString("precio"), autoObj.getString("transmision"));
-                    autosList.add(a);
+                    if (a.getStatus() == 1){
+                        autosList.add(a);
+                    }
                     //Toast.makeText(getApplicationContext(), a + " " + response, Toast.LENGTH_LONG).show();
                 }
                 AutosAdapter adapter = new AutosAdapter(autosList);

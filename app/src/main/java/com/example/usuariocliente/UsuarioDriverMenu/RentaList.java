@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.example.usuariocliente.Adapter.AutosAdapter;
-import com.example.usuariocliente.Login.Login;
+import com.example.usuariocliente.MainActivity;
 import com.example.usuariocliente.Models.Auto;
 import com.example.usuariocliente.Models.Globals;
 import com.example.usuariocliente.Models.Handler;
@@ -69,7 +69,7 @@ public class RentaList extends AppCompatActivity {
             startActivity(i);
         });
         CerrarSesion.setOnClickListener(v -> {
-            i = new Intent(getApplicationContext(), Login.class);
+            i = new Intent(getApplicationContext(), MainActivity.class);
             Toast.makeText(getApplicationContext(), "Regresar a Login", Toast.LENGTH_SHORT).show();
             startActivity(i);
         });
