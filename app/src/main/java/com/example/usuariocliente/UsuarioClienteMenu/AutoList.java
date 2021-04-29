@@ -56,7 +56,6 @@ public class AutoList extends AppCompatActivity {
 
 
         //Navegation Menu
-
         Back.setOnClickListener(v -> {
             i = new Intent(getApplicationContext(), UsuarioClienteMenu.class);
             Toast.makeText(getApplicationContext(), "Regresar a Pantalla anterior, en este caso el menu de UsuarioClienteMenu", Toast.LENGTH_LONG).show();
@@ -77,12 +76,10 @@ public class AutoList extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Regresar a Login", Toast.LENGTH_SHORT).show();
             startActivity(i);
         });
-
         //Navegation Menu
     }
 
     private void showList(){
-
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Globals.ip + "getAutos.php", response -> {
             try {
                 JSONObject obj = new JSONObject(response);

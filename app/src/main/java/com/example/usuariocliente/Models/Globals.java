@@ -2,6 +2,7 @@ package com.example.usuariocliente.Models;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
@@ -10,6 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.BreakIterator;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ import java.util.TimeZone;
 
 public class Globals {
     public static String ip = "https://cinderellaride.000webhostapp.com/assets/php/";
+    public static List<Renta> listaRentas = new ArrayList<>();
 
     public static String getColor(int id){
         switch (id){
@@ -105,5 +108,64 @@ public class Globals {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean("sesion_iniciada", Boolean.FALSE);
         editor.apply();
+    }
+
+    public static List<Renta> showListRenta(Context c) {
+        List<Renta> rentasList = new ArrayList<>();
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Globals.ip + "getRenta.php", response -> {
+            try {
+                JSONObject obj = new JSONObject(response);
+                JSONArray array = obj.getJSONArray("vehiculos");
+                for (int i = 0; i < array.length(); i++){
+                    JSONObject rentaObj = array.getJSONObject(i);
+                    Renta a = new Renta(rentaObj.getInt("id_renta"), rentaObj.getInt("id_vehiculo"), rentaObj.getInt("id_usuario"),
+                            rentaObj.getString("ubicacion"), rentaObj.getInt("status"), rentaObj.getString("fecha_inicio"), rentaObj.getString("fecha_fin"));
+                    if (a.status == 1){
+                        rentasList.add(a);
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Toast.makeText(c, e + " " + response, Toast.LENGTH_LONG).show();
+            }
+        }, error -> { });
+        Handler.getInstance(c).addToRequestQueue(stringRequest);
+        return rentasList;
+    }
+
+    public static Auto getAuto(Renta renta, Context c) {
+        List<Auto> listaAuto = showList(c);
+
+        for (Auto auto: listaAuto) {
+            if (auto.getId_vehiculo() == renta.getId_vehiculo()){
+                return auto;
+            }
+        }
+        return null;
+    }
+
+    public static List<Cliente> getCliente(Context c, Renta renta) {
+        List<Cliente> a = new ArrayList<>();
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Globals.ip + "getUsuario.php?id_usuario=" + renta.getId_usuario(), response -> {
+            try {
+                JSONObject obj = new JSONObject(response);
+                JSONArray array = obj.getJSONArray("cliente");
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject clienteObj = array.getJSONObject(i);
+                    Cliente cliente = new Cliente(clienteObj.getInt("id_Usuario"), clienteObj.getInt("clase_usuario"), clienteObj.getString("correo"), clienteObj.getString("nombres"),
+                            clienteObj.getString("apellido_paterno"), clienteObj.getString("apellido_materno"), clienteObj.getString("telefono"),
+                            clienteObj.getString("direccion"), clienteObj.getString("fecha_de_nacimiento"));
+                    a.add(cliente);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }, error -> { });
+        Handler.getInstance(c).addToRequestQueue(stringRequest);
+        return a;
+    }
+
+    public static void setRentasList(List<Renta> response) {
+        listaRentas = response;
     }
 }

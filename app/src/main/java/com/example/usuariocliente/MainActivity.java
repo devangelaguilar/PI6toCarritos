@@ -26,6 +26,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.usuariocliente.UsuarioDriverMenu.UsuarioDriverMenu;
 
 public class MainActivity extends AppCompatActivity {
     Intent i;
@@ -33,9 +34,6 @@ public class MainActivity extends AppCompatActivity {
     EditText edit_email, edit_pass;
     TextView registro;
     SharedPreferences preferences;
-
-
-    String URL_SERVIDOR = "Colocar servidor";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,25 +92,30 @@ public class MainActivity extends AppCompatActivity {
                                     JSONObject object = jsonArray.getJSONObject(i);
 
                                     int id_Usuario = object.getInt("id_Usuario");
+                                    int clase_usuario = object.getInt("clase_usuario");
                                     String nombres = object.getString("nombres").trim();
                                     String apellido_paterno = object.getString("apellido_paterno").trim();
                                     String apellido_materno = object.getString("apellido_materno").trim();
                                     String correo1 = object.getString("correo").trim();
                                     String telefono = object.getString("telefono").trim();
                                     String fecha_de_nacimiento = object.getString("fecha_de_nacimiento").trim();
-                                    setSharedPreferences(id_Usuario, nombres, apellido_paterno, apellido_materno, correo1, telefono, fecha_de_nacimiento);
+                                    setSharedPreferences(id_Usuario, clase_usuario, nombres, apellido_paterno, apellido_materno, correo1, telefono, fecha_de_nacimiento);
 
                                     //If Usuario Cliente TRUE
-                                    Intent intent = new Intent(getApplicationContext(), UsuarioClienteMenu.class);
-                                    startActivity(intent);
-                                    finish();
-
-
+                                    if (clase_usuario == 1){
+                                        Intent intent = new Intent(getApplicationContext(), UsuarioClienteMenu.class);
+                                        startActivity(intent);
+                                        finish();
+                                    } else if (clase_usuario == 2){
+                                        Intent intent = new Intent(getApplicationContext(), UsuarioDriverMenu.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
 
                                 }
 
                             } else {
-                                Toast.makeText(getApplicationContext(), "" + success, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "aaa" + success, Toast.LENGTH_SHORT).show();
                             }
 
                         } catch (JSONException e) {
@@ -136,11 +139,12 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-    public void setSharedPreferences(int id, String nombres, String apellido_paterno, String apellido_materno, String mail, String telefono, String fecha_de_nacimiento) {
+    public void setSharedPreferences(int id, int clase_usuario,String nombres, String apellido_paterno, String apellido_materno, String mail, String telefono, String fecha_de_nacimiento) {
         SharedPreferences preferences = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt("id_unico", id);
+        editor.putInt("clase_usuario", clase_usuario);
         editor.putString("nombres", nombres);
         editor.putString("apellido_paterno", apellido_paterno);
         editor.putString("apellido_materno", apellido_materno);
@@ -155,10 +159,17 @@ public class MainActivity extends AppCompatActivity {
     private void cargarSP(){
         SharedPreferences preferences = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
         Boolean sesion_iniciada = preferences.getBoolean("sesion_iniciada", Boolean.FALSE);
+        int clase_usuariosp = preferences.getInt("clase_usuario", 0);
 
         if (sesion_iniciada.equals(Boolean.TRUE)){
-            i = new Intent(getApplicationContext(), UsuarioClienteMenu.class);
-            startActivity(i);
+            if(clase_usuariosp == 1){
+                i = new Intent(getApplicationContext(), UsuarioClienteMenu.class);
+                startActivity(i);
+            } else if (clase_usuariosp == 2){
+                i = new Intent(getApplicationContext(), UsuarioDriverMenu.class);
+                startActivity(i);
+            }
         }
     }
+
 }

@@ -55,21 +55,12 @@ public class AutoSelected extends AppCompatActivity {
 
         //Data in sheet
         txtmodelo=findViewById(R.id.txtmodelo);
-
         txtcolor=findViewById(R.id.txtcolor);
-
         tipo1=findViewById(R.id.tipo1);
-
         tipo2=findViewById(R.id.tipo2);
-
         tipo3=findViewById(R.id.tipo3);
-
-        tipo4=findViewById(R.id.tipo4);
-
         tipo5=findViewById(R.id.tipo5);
-
         tipo6=findViewById(R.id.tipo6);
-
         tipo7=findViewById(R.id.tipo7);
         //end Data in Sheet
 
@@ -83,14 +74,12 @@ public class AutoSelected extends AppCompatActivity {
         tipo1.setText(autodata.getTipo_vehiculo());
         tipo2.setText(autodata.getPlacas());
         tipo3.setText(autodata.getFoto());
-        tipo4.setText("Disponible");
         tipo5.setText(autodata.getTransmision());
         tipo6.setText(autodata.getPrecio());
         tipo7.setText(autodata.getPrecio());
         //END Build Data Sheet
 
-        //NAvegation Menu
-
+        //Navegation Menu
         Back.setOnClickListener(v -> {
             i = new Intent(getApplicationContext(), UsuarioClienteMenu.class);
             Toast.makeText(getApplicationContext(), "Regresar a Pantalla anterior, en este caso el menu de UsuarioClienteMenu", Toast.LENGTH_LONG).show();
@@ -112,7 +101,6 @@ public class AutoSelected extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Regresar a Login", Toast.LENGTH_SHORT).show();
             startActivity(i);
         });
-
         //Navegation Menu
 
         btn_rentar.setOnClickListener(v -> {

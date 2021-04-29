@@ -60,7 +60,6 @@ public class Registro extends AppCompatActivity {
         telefono.setFilters(new InputFilter[]{ new InputFilter.LengthFilter(10)});
         //Corregir licencia para tener formato de foto y Fecha de NAcimiento para emplear calendario Android
 
-
         nombres.setFilters(new InputFilter[] { filterLetter });
         apellido_paterno.setFilters(new InputFilter[] { filterLetter });
         apellido_materno.setFilters(new InputFilter[] { filterLetter });
