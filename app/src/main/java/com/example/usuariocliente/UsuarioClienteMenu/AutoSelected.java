@@ -113,11 +113,11 @@ public class AutoSelected extends AppCompatActivity {
     public void registrar() {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Globals.ip + "RentaAuto.php", response -> {
-            if (response.equals("ERROR 1")){
-                Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
-            } else if (response.equals("MENSAJE")){
+            if (response.equals("MENSAJE")){
                 i = new Intent(getApplicationContext(), UsuarioClienteMenu.class);
                 startActivity(i);
+            } else {
+                Toast.makeText(getApplicationContext(), "" + response, Toast.LENGTH_SHORT).show();
             }
             Toast.makeText(getApplicationContext(), "" + response, Toast.LENGTH_SHORT).show();
         }, error -> Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show()){

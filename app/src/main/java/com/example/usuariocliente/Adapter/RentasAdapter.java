@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,7 +50,7 @@ public class RentasAdapter extends RecyclerView.Adapter<RentasAdapter.RentaViewH
     public void onBindViewHolder(@NonNull RentaViewHolder holder, int position) {
         //Auto auto = Globals.getAuto(rentasList.get(position), c);
         //List<Cliente> cliente = Globals.getCliente(c, rentasList.get(position));
-        holder.nombre.setText(rentas.get(position).getFecha_inicio());
+        holder.nombre.setText("ID cliente: " + rentas.get(position).getId_usuario());
         //holder.placas.setText(auto.getPlacas());
         //holder.usuario.setText(cliente.get(0).getNombres() + " " + cliente.get(0).getApellido_paterno() + " " + cliente.get(0).getApellido_materno());
 
@@ -62,6 +63,7 @@ public class RentasAdapter extends RecyclerView.Adapter<RentasAdapter.RentaViewH
             //i.putExtra("renta", renta);
             //c.startActivity(i);
         });
+        holder.entregar.setOnClickListener(v -> Toast.makeText(c, "ENTREGAR", Toast.LENGTH_SHORT).show());
 
     }
 
@@ -76,6 +78,7 @@ public class RentasAdapter extends RecyclerView.Adapter<RentasAdapter.RentaViewH
         CardView cv;
         TextView nombre, usuario, placas;
         ImageView foto;
+        Button entregar;
 
         public RentaViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -84,6 +87,7 @@ public class RentasAdapter extends RecyclerView.Adapter<RentasAdapter.RentaViewH
             foto = itemView.findViewById(R.id.ivAuto);
             usuario = itemView.findViewById(R.id.tvNombre_usuario);
             placas = itemView.findViewById(R.id.tvPlacas);
+            entregar = itemView.findViewById(R.id.btnEntregar);
         }
     }
 

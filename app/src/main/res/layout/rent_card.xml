@@ -9,8 +9,8 @@
         android:id="@+id/cvRenta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:elevation="15dp"
+        android:backgroundTint="#e1e2e3"
+        android:elevation="25dp"
         app:cardCornerRadius="10dp">
 
         <RelativeLayout
@@ -39,6 +39,7 @@
                 android:orientation="horizontal"
                 android:layout_marginRight="0dp">
                 <TextView
+                    android:id="@+id/txtUsuario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Usuario:"
@@ -83,6 +84,14 @@
                     android:textSize="18dp"/>
             </LinearLayout>
 
+            <Button
+                android:id="@+id/btnEntregar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll2"
+                android:layout_marginTop="40dp"
+                android:layout_alignParentRight="true"
+                android:text="Entregar"/>
         </RelativeLayout>
 
     </com.google.android.material.card.MaterialCardView>
