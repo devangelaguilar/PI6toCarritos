@@ -130,12 +130,6 @@
                 android:layout_marginLeft="10dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
-            <ImageView
-                android:id="@+id/imgedit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/edit"
-                android:layout_alignParentRight="true"/>
 
         </RelativeLayout>
 
@@ -188,7 +182,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="50dp"
                     android:textColor="@color/black"
-                    android:text="24"
+                    android:text="-"
                     android:layout_gravity="center"/>
                 <TextView
                     android:id="@+id/dia_mesInicio"
@@ -196,7 +190,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
                     android:textColor="@color/black"
-                    android:text="Sábado | Abril"
+                    android:text="- | -"
                     android:textStyle="bold"
                     android:layout_gravity="center"/>
 
@@ -233,7 +227,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="29"
+                    android:text="-"
                     android:textColor="@color/black"
                     android:textSize="50dp" />
 
@@ -242,7 +236,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Jueves | Abril"
+                    android:text="- | -"
                     android:textColor="@color/black"
                     android:textSize="16dp"
                     android:textStyle="bold" />

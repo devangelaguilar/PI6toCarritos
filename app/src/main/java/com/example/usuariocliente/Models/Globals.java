@@ -2,10 +2,12 @@ package com.example.usuariocliente.Models;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.location.Location;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
+import com.example.usuariocliente.UsuarioClienteMenu.UsuarioClienteMenu;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,6 +25,15 @@ import java.util.TimeZone;
 public class Globals {
     public static String ip = "https://cinderellaride.000webhostapp.com/assets/php/";
     public static List<Renta> listaRentas = new ArrayList<>();
+    public static Location currentLocation;
+
+    public static Location getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public static void setCurrentLocation(Location currentLocation) {
+        Globals.currentLocation = currentLocation;
+    }
 
     public static String getColor(int id){
         switch (id){
@@ -69,7 +80,9 @@ public class Globals {
                     JSONObject autoObj = array.getJSONObject(i);
                     Auto a = new Auto(autoObj.getInt("id_vehiculo"), Globals.getTipo_vehiculo(autoObj.getInt("tipo_vehiculo")), autoObj.getString("placas"), autoObj.getString("modelo"),
                             Globals.getColor(autoObj.getInt("color")), autoObj.getString("foto"), autoObj.getInt("status"), autoObj.getString("precio"), autoObj.getString("transmision"));
-                    autosList.add(a);
+                    if (a.getStatus() == 1){
+                        autosList.add(a);
+                    }
                 }
 
             } catch (JSONException e) {

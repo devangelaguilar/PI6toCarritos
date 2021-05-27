@@ -39,7 +39,8 @@ public class AutoSelected extends AppCompatActivity {
     Button btn_rentar;
     Auto autodata;
     String ubicacion, fecha_inicio, fecha_fin;
-    int id_usuario;
+    String[] f_i, f_f;
+    int id_usuario, dif;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +53,10 @@ public class AutoSelected extends AppCompatActivity {
         btn_rentar = findViewById(R.id.btnPagar);
 
         cargarSP();
+        ubicacion = Globals.getCurrentLocation().toString();
+        f_i = fecha_inicio.split("-");
+        f_f = fecha_fin.split("-");
+        dif = Integer.parseInt(f_f[2]) - Integer.parseInt(f_i[2]);
 
         //Data in sheet
         txtmodelo=findViewById(R.id.txtmodelo);
@@ -66,7 +71,7 @@ public class AutoSelected extends AppCompatActivity {
 
         Intent intent = getIntent();
         autodata = (Auto) intent.getSerializableExtra("auto");
-        Toast.makeText(this, ""+autodata.getColor(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, ""+autodata.getColor(), Toast.LENGTH_SHORT).show();
 
         //Build Data Sheet
         txtmodelo.setText(autodata.getModelo());
@@ -75,8 +80,9 @@ public class AutoSelected extends AppCompatActivity {
         tipo2.setText(autodata.getPlacas());
         tipo3.setText(autodata.getFoto());
         tipo5.setText(autodata.getTransmision());
-        tipo6.setText(autodata.getPrecio());
-        tipo7.setText(autodata.getPrecio());
+        tipo6.setText("$" + autodata.getPrecio());
+        double total = Double.parseDouble(autodata.getPrecio()) * dif;
+        tipo7.setText("$" + total);
         //END Build Data Sheet
 
         //Navegation Menu
@@ -144,11 +150,9 @@ public class AutoSelected extends AppCompatActivity {
         int usuario = preferences.getInt("id_unico", 0);
         String inicio = preferences.getString("fecha_inicio", "");
         String fin = preferences.getString("fecha_fin", "");
-        String ub = preferences.getString("ubicacion", "");
 
         id_usuario = usuario;
         fecha_inicio = inicio;
         fecha_fin = fin;
-        ubicacion = ub;
     }
 }

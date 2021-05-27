@@ -1,7 +1,5 @@
 package com.example.usuariocliente;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,8 +10,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.usuariocliente.Models.Globals;
 import com.example.usuariocliente.UsuarioClienteMenu.UsuarioClienteMenu;
+import com.example.usuariocliente.UsuarioDriverMenu.UsuarioDriverMenu;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,12 +26,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.usuariocliente.UsuarioDriverMenu.UsuarioDriverMenu;
 
 public class MainActivity extends AppCompatActivity {
     Intent i;
@@ -50,27 +49,20 @@ public class MainActivity extends AppCompatActivity {
         preferences = this.getSharedPreferences("USERPREF", Context.MODE_PRIVATE);
 
 
-        registro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i = new Intent(MainActivity.this, Registro.class);
-                startActivity(i);
-            }
-
+        registro.setOnClickListener(v -> {
+            i = new Intent(MainActivity.this, Registro.class);
+            startActivity(i);
         });
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String mEmail = edit_email.getText().toString().trim();
-                String mPass = edit_pass.getText().toString().trim();
+        login.setOnClickListener(v -> {
+            String mEmail = edit_email.getText().toString().trim();
+            String mPass = edit_pass.getText().toString().trim();
 
-                if (!mEmail.isEmpty() || !mPass.isEmpty()) {
-                    Login(mEmail, mPass);
-                } else {
-                    edit_email.setError("Ingresar Email");
-                    edit_pass.setError("Ingresar Contraseña");
-                }
+            if (!mEmail.isEmpty() || !mPass.isEmpty()) {
+                Login(mEmail, mPass);
+            } else {
+                edit_email.setError("Ingresar Email");
+                edit_pass.setError("Ingresar Contraseña");
             }
         });
     }
@@ -115,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
 
                             } else {
-                                Toast.makeText(getApplicationContext(), "aaa" + success, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Error en response" + success, Toast.LENGTH_SHORT).show();
                             }
 
                         } catch (JSONException e) {
@@ -171,5 +163,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
 }

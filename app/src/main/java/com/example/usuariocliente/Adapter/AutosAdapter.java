@@ -60,6 +60,7 @@ public class AutosAdapter extends RecyclerView.Adapter<AutosAdapter.AutoViewHold
             Intent i = new Intent(c, AutoSelected.class);
             i.putExtra("auto", auto);
             c.startActivity(i);
+
         });
         autosList = Globals.showList(c);
     }
