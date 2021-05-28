@@ -1,4 +1,4 @@
-package com.example.usuariocliente.UsuarioClienteMenu;
+package com.example.usuariocliente.Cliente;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.example.usuariocliente.R;
 import com.example.usuariocliente.UsuarioClienteConfiguracion.UsuarioClienteUserOptions;
-import com.example.usuariocliente.UsuarioClienteMenu.UsuarioClienteMenu;
+import com.example.usuariocliente.Cliente.UsuarioClienteMenu;
 
 public class HistorialSelected extends AppCompatActivity {
     ImageView Back,Historial,Usuario,CerrarSesion;

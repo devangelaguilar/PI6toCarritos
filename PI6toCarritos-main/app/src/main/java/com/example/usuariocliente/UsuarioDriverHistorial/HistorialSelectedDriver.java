@@ -10,9 +10,9 @@ import android.widget.Toast;
 import com.example.usuariocliente.R;
 import com.example.usuariocliente.UsuarioClienteConfiguracion.UsuarioClienteUserOptions;
 import com.example.usuariocliente.UsuarioClienteHistorial.UsuarioClienteHistorial;
-import com.example.usuariocliente.UsuarioClienteMenu.UsuarioClienteMenu;
+import com.example.usuariocliente.Cliente.UsuarioClienteMenu;
 import com.example.usuariocliente.UsuarioDriverInfo.UsuarioDriverInfo;
-import com.example.usuariocliente.UsuarioDriverMenu.UsuarioDriverMenu;
+import com.example.usuariocliente.Driver.UsuarioDriverMenu;
 
 public class HistorialSelectedDriver extends AppCompatActivity {
     ImageView Back,Historial,Usuario,CerrarSesion;

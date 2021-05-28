@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Information"
+        android:id="@+id/UserInfo"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:textSize="18dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        android:id="@+id/AModelo"
+        android:layout_below="@id/UserInfo"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        />
+
+    <TextView
+        android:id="@+id/AColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Apellido"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="125dp"
+        android:layout_toRightOf="@id/AModelo"
+        android:textColor="@color/black"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/ATipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/AModelo"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="39dp"
+        android:text="Correo"
+        android:textColor="@color/black"
+        android:textSize="18dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ATipo"
+        android:layout_marginTop="30dp"
+        android:text="Telefono"
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/APlacas"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/APlacas"
+        android:layout_marginTop="30dp"
+        android:text="Foto"
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/Afoto"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Afoto"
+        android:layout_marginTop="30dp"
+        android:text="Direccion"
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/AEstado"/>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/AEstado"
+        android:layout_marginTop="30dp"
+        android:text="Fecha de Nacimiento"
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/ATransmision"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ATransmision"
+        android:layout_marginTop="40dp"
+        android:text="Metodo de pago"
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/APrecio"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/APrecio"
+        android:layout_marginTop="40dp"
+        android:text="Licencia"
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/ATotal"/>
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cerrar sesion"
+        android:layout_below="@id/ATotal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="80dp"
+        android:textColor="@color/white"
+        android:id="@+id/logout"/>
+</RelativeLayout>

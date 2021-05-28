@@ -15,13 +15,13 @@
         <activity android:name=".UsuarioDriverInfo.UsuarioDriverInfo" />
         <activity android:name=".UsuarioDriverHistorial.HistorialSelectedDriver" />
         <activity android:name=".UsuarioDriverHistorial.UsuarioDriverHistorial" />
-        <activity android:name=".UsuarioDriverMenu.UsuarioDriverMenu" />
+        <activity android:name=".Driver.UsuarioDriverMenu" />
         <activity android:name=".UsuarioClienteConfiguracion.UsuarioClienteUserOptions" />
         <activity android:name=".UsuarioClienteHistorial.HistorialSelected" />
         <activity android:name=".UsuarioClienteHistorial.UsuarioClienteHistorial" />
-        <activity android:name=".UsuarioClienteMenu.AutoList" />
-        <activity android:name=".UsuarioClienteMenu.AutoSelected" />
-        <activity android:name=".UsuarioClienteMenu.UsuarioClienteMenu" />
+        <activity android:name=".Cliente.AutoList" />
+        <activity android:name=".Cliente.AutoSelected" />
+        <activity android:name=".Cliente.UsuarioClienteMenu" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

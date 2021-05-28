@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import com.example.usuariocliente.R;
 import com.example.usuariocliente.UsuarioDriverHistorial.UsuarioDriverHistorial;
-import com.example.usuariocliente.UsuarioDriverMenu.UsuarioDriverMenu;
+import com.example.usuariocliente.Driver.UsuarioDriverMenu;
 
 public class UsuarioDriverInfo extends AppCompatActivity {
     ImageView Back, Historial, Usuario, CerrarSesion;

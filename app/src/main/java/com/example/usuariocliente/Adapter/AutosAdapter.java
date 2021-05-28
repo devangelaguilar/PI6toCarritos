@@ -13,14 +13,14 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.usuariocliente.Cliente.Home.AutoList;
 import com.example.usuariocliente.Models.Auto;
 import com.example.usuariocliente.Models.Globals;
 import com.example.usuariocliente.R;
-import com.example.usuariocliente.UsuarioClienteMenu.AutoSelected;
+import com.example.usuariocliente.Cliente.Home.AutoSelected;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class AutosAdapter extends RecyclerView.Adapter<AutosAdapter.AutoViewHolder> {
     List<Auto> autos;
@@ -60,7 +60,7 @@ public class AutosAdapter extends RecyclerView.Adapter<AutosAdapter.AutoViewHold
             Intent i = new Intent(c, AutoSelected.class);
             i.putExtra("auto", auto);
             c.startActivity(i);
-
+            ((AutoList)c).finish();
         });
         autosList = Globals.showList(c);
     }

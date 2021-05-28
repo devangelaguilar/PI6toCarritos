@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,9 +15,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.usuariocliente.Cliente.ClienteMenu;
 import com.example.usuariocliente.Models.Globals;
-import com.example.usuariocliente.UsuarioClienteMenu.UsuarioClienteMenu;
-import com.example.usuariocliente.UsuarioDriverMenu.UsuarioDriverMenu;
+import com.example.usuariocliente.Driver.ListaRenta;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -95,11 +94,11 @@ public class MainActivity extends AppCompatActivity {
 
                                     //If Usuario Cliente TRUE
                                     if (clase_usuario == 1){
-                                        Intent intent = new Intent(getApplicationContext(), UsuarioClienteMenu.class);
+                                        Intent intent = new Intent(getApplicationContext(), ClienteMenu.class);
                                         startActivity(intent);
                                         finish();
                                     } else if (clase_usuario == 2){
-                                        Intent intent = new Intent(getApplicationContext(), UsuarioDriverMenu.class);
+                                        Intent intent = new Intent(getApplicationContext(), ListaRenta.class);
                                         startActivity(intent);
                                         finish();
                                     }
@@ -155,10 +154,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (sesion_iniciada.equals(Boolean.TRUE)){
             if(clase_usuariosp == 1){
-                i = new Intent(getApplicationContext(), UsuarioClienteMenu.class);
+                i = new Intent(getApplicationContext(), ClienteMenu.class);
                 startActivity(i);
             } else if (clase_usuariosp == 2){
-                i = new Intent(getApplicationContext(), UsuarioDriverMenu.class);
+                i = new Intent(getApplicationContext(), ListaRenta.class);
                 startActivity(i);
             }
         }

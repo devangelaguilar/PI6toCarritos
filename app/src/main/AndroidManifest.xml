@@ -13,18 +13,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UsuarioCliente">
-        <receiver android:name=".Models.MyLocation"/>
+        <activity android:name=".Cliente.ClienteMenu"></activity>
+        <activity android:name=".Driver.DriverMenu" />
+
+        <receiver android:name=".Models.MyLocation" />
+
         <activity android:name=".Registro" />
-        <activity android:name=".UsuarioDriverInfo.UsuarioDriverInfo" />
-        <activity android:name=".UsuarioDriverHistorial.HistorialSelectedDriver" />
-        <activity android:name=".UsuarioDriverHistorial.UsuarioDriverHistorial" />
-        <activity android:name=".UsuarioDriverMenu.UsuarioDriverMenu" />
-        <activity android:name=".UsuarioClienteConfiguracion.UsuarioClienteUserOptions" />
-        <activity android:name=".UsuarioClienteHistorial.HistorialSelected" />
-        <activity android:name=".UsuarioClienteHistorial.UsuarioClienteHistorial" />
-        <activity android:name=".UsuarioClienteMenu.AutoList" />
-        <activity android:name=".UsuarioClienteMenu.AutoSelected" />
-        <activity android:name=".UsuarioClienteMenu.UsuarioClienteMenu" />
+        <activity android:name=".Driver.DriverInfo" />
+        <activity android:name=".Driver.HistorialSelectedDriver" />
+        <activity android:name=".Driver.DriverHistory" />
+        <activity android:name=".Driver.ListaRenta" />
+        <activity android:name=".Cliente.Options.e" />
+        <activity android:name=".Cliente.History.HistorySelected" />
+        <activity android:name=".Cliente.Home.AutoList" />
+        <activity android:name=".Cliente.Home.AutoSelected" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

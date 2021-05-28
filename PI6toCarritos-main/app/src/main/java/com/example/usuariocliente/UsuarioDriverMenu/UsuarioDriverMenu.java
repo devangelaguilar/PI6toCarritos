@@ -1,4 +1,4 @@
-package com.example.usuariocliente.UsuarioDriverMenu;
+package com.example.usuariocliente.Driver;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +10,7 @@ import android.widget.Toast;
 import com.example.usuariocliente.R;
 import com.example.usuariocliente.UsuarioClienteConfiguracion.UsuarioClienteUserOptions;
 import com.example.usuariocliente.UsuarioClienteHistorial.UsuarioClienteHistorial;
-import com.example.usuariocliente.UsuarioClienteMenu.UsuarioClienteMenu;
+import com.example.usuariocliente.Cliente.UsuarioClienteMenu;
 import com.example.usuariocliente.UsuarioDriverHistorial.UsuarioDriverHistorial;
 import com.example.usuariocliente.UsuarioDriverInfo.UsuarioDriverInfo;
 

@@ -18,11 +18,10 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.usuariocliente.Cliente.ClienteMenu;
 import com.example.usuariocliente.Models.Globals;
-import com.example.usuariocliente.UsuarioClienteMenu.UsuarioClienteMenu;
 
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,7 +32,7 @@ public class Registro extends AppCompatActivity {
 
     EditText nombres, apellido_paterno, apellido_materno, correo, password, telefono, fecha_de_nacimiento, licencia;
     Button Registro;
-    TextView LoginReturn;
+    TextView loginReturn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +50,7 @@ public class Registro extends AppCompatActivity {
         fecha_de_nacimiento= findViewById(R.id.edit_Fecha_nacimiento);
         licencia= findViewById(R.id.edit_licencia);
 
+
         //Filtros de EditText
         nombres.setFilters(new InputFilter[]{new InputFilter.LengthFilter(50)});
         apellido_paterno.setFilters(new InputFilter[]{new InputFilter.LengthFilter(20)});
@@ -64,30 +64,18 @@ public class Registro extends AppCompatActivity {
         apellido_paterno.setFilters(new InputFilter[] { filterLetter });
         apellido_materno.setFilters(new InputFilter[] { filterLetter });
 
-        Registro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        Registro.setOnClickListener(view -> {
+            int lengthtel = telefono.getText().length();
+            if(!(lengthtel==10)){
+                Toast.makeText(Registro.this, "Introduzca un número de teléfono válido", Toast.LENGTH_SHORT).show();
+            }
+            if(!(isEmailValid(correo.getText().toString()))){
+                Toast.makeText(Registro.this, "Introduzca un Correo (email) válido", Toast.LENGTH_SHORT).show();
 
-                int lengthtel = telefono.getText().length();
-
-
-                if(!(lengthtel==10)){
-                    Toast.makeText(Registro.this, "Introduzca un número de teléfono válido", Toast.LENGTH_SHORT).show();
-                }
-
-
-                if(!(isEmailValid(correo.getText().toString()))){
-                    Toast.makeText(Registro.this, "Introduzca un Correo (email) válido", Toast.LENGTH_SHORT).show();
-
-                }
-                if (  (lengthtel==10) && (isEmailValid(correo.getText().toString()))){
-                    //Toast.makeText(Registro.this, "Registro en progreso", Toast.LENGTH_SHORT).show();
-                    registrar();
-                }
-
-
-
-
+            }
+            if (  (lengthtel==10) && (isEmailValid(correo.getText().toString()))){
+                //Toast.makeText(Registro.this, "Registro en progreso", Toast.LENGTH_SHORT).show();
+                registrar();
             }
         });
 
@@ -98,9 +86,10 @@ public class Registro extends AppCompatActivity {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Globals.ip + "registrar.php", response -> {
             if (response.equals("MENSAJE")){
-                i = new Intent(getApplicationContext(), UsuarioClienteMenu.class);
+                i = new Intent(getApplicationContext(), ClienteMenu.class);
                 setSharedPreferences(nombres.getText().toString(), apellido_paterno.getText().toString(), apellido_materno.getText().toString(), correo.getText().toString(), telefono.getText().toString(), fecha_de_nacimiento.getText().toString());
                 startActivity(i);
+                finish();
             } else {
                 Toast.makeText(getApplicationContext(), "" + response, Toast.LENGTH_SHORT).show();
             }

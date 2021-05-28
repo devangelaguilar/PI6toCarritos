@@ -1,7 +1,6 @@
 package com.example.usuariocliente.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.usuariocliente.Models.Auto;
-import com.example.usuariocliente.Models.Cliente;
-import com.example.usuariocliente.Models.Globals;
 import com.example.usuariocliente.Models.Renta;
 import com.example.usuariocliente.R;
-import com.example.usuariocliente.UsuarioClienteMenu.AutoSelected;
 
 import java.util.ArrayList;
 import java.util.List;

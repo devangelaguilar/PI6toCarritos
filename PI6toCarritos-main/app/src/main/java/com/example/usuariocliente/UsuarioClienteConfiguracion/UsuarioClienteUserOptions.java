@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.example.usuariocliente.R;
 import com.example.usuariocliente.UsuarioClienteHistorial.UsuarioClienteHistorial;
-import com.example.usuariocliente.UsuarioClienteMenu.UsuarioClienteMenu;
+import com.example.usuariocliente.Cliente.UsuarioClienteMenu;
 
 public class UsuarioClienteUserOptions extends AppCompatActivity {
     ImageView Back,Historial,Usuario,CerrarSesion;

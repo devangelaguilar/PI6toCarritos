@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UsuarioClienteHistorial.UsuarioClienteHistorial">
+    tools:context=".Cliente.History.f">
 
     <GridLayout
         android:id="@+id/Icons"
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+            app:srcCompat="@drawable/baseline_logout_24"/>
 
     </GridLayout>
 

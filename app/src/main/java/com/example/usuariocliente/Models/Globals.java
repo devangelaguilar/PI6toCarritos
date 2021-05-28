@@ -7,14 +7,11 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
-import com.example.usuariocliente.UsuarioClienteMenu.UsuarioClienteMenu;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.BreakIterator;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -95,21 +92,21 @@ public class Globals {
     }
 
     public static String getDayOfWeek(Date date) {
-        Calendar c = Calendar.getInstance(TimeZone.getTimeZone("GMT-5"));
+        Calendar c = Calendar.getInstance(TimeZone.getTimeZone("GMT-7"));
         c.setTime(date);
         String dayWeekText = new SimpleDateFormat("EEEE").format(date);
         return  dayWeekText;
     }
 
     public static String getMonth(Date date) {
-        Calendar c = Calendar.getInstance(TimeZone.getTimeZone("GMT-5"));
+        Calendar c = Calendar.getInstance(TimeZone.getTimeZone("GMT-7"));
         c.setTime(date);
         String month = new SimpleDateFormat("MMMM").format(date);
         return month;
     }
 
     public static String getDayNumber(Date date) {
-        Calendar c = Calendar.getInstance(TimeZone.getTimeZone("GMT-5"));
+        Calendar c = Calendar.getInstance(TimeZone.getTimeZone("GMT-7"));
         c.setTime(date);
         String day = new SimpleDateFormat("dd").format(date);
         return day;
