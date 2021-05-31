@@ -1,12 +1,15 @@
 package com.example.usuariocliente.Models;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
+import com.example.usuariocliente.Login;
+import com.example.usuariocliente.SplashScreen;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,7 +26,8 @@ public class Globals {
     public static String ip = "https://cinderellaride.000webhostapp.com/assets/php/";
     public static List<Renta> listaRentas = new ArrayList<>();
     public static Location currentLocation;
-
+    public static List<Cliente> clientes = new ArrayList<>();
+    public static List<Auto> autosList = new ArrayList<>();
     public static Location getCurrentLocation() {
         return currentLocation;
     }
@@ -143,39 +147,70 @@ public class Globals {
         return rentasList;
     }
 
-    public static Auto getAuto(Renta renta, Context c) {
-        List<Auto> listaAuto = showList(c);
+    public static void getClientes(Context c) {
 
-        for (Auto auto: listaAuto) {
-            if (auto.getId_vehiculo() == renta.getId_vehiculo()){
-                return auto;
-            }
-        }
-        return null;
-    }
-
-    public static List<Cliente> getCliente(Context c, Renta renta) {
-        List<Cliente> a = new ArrayList<>();
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Globals.ip + "getUsuario.php?id_usuario=" + renta.getId_usuario(), response -> {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Globals.ip + "getUsuario.php", response -> {
             try {
                 JSONObject obj = new JSONObject(response);
-                JSONArray array = obj.getJSONArray("cliente");
+                JSONArray array = obj.getJSONArray("usuarios");
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject clienteObj = array.getJSONObject(i);
-                    Cliente cliente = new Cliente(clienteObj.getInt("id_Usuario"), clienteObj.getInt("clase_usuario"), clienteObj.getString("correo"), clienteObj.getString("nombres"),
+                    Cliente cliente = new Cliente(clienteObj.getInt("id_Usuario"), clienteObj.getInt("clase_usuario"), clienteObj.getString("correo"), clienteObj.getString("nombre"),
                             clienteObj.getString("apellido_paterno"), clienteObj.getString("apellido_materno"), clienteObj.getString("telefono"),
                             clienteObj.getString("direccion"), clienteObj.getString("fecha_de_nacimiento"));
-                    a.add(cliente);
+                    clientes.add(cliente);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }, error -> { });
         Handler.getInstance(c).addToRequestQueue(stringRequest);
-        return a;
+
+    }
+
+    public static void getAutos(Context c){
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Globals.ip + "getAutos.php", response -> {
+            try {
+                JSONObject obj = new JSONObject(response);
+                JSONArray array = obj.getJSONArray("vehiculos");
+                for (int i = 0; i < array.length(); i++){
+                    JSONObject autoObj = array.getJSONObject(i);
+                    Auto a = new Auto(autoObj.getInt("id_vehiculo"), Globals.getTipo_vehiculo(autoObj.getInt("tipo_vehiculo")), autoObj.getString("placas"), autoObj.getString("modelo"),
+                            Globals.getColor(autoObj.getInt("color")), autoObj.getString("foto"), autoObj.getInt("status"), autoObj.getString("precio"), autoObj.getString("transmision"));
+                    autosList.add(a);
+                }
+                Intent intent = new Intent(c, Login.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                c.startActivity(intent);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }, error -> { });
+        Handler.getInstance(c).addToRequestQueue(stringRequest);
+
     }
 
     public static void setRentasList(List<Renta> response) {
         listaRentas = response;
+    }
+
+    public static Auto getAuto(Context c, Renta renta){
+        for (Auto auto: autosList) {
+            if (auto.getId_vehiculo() == renta.getId_vehiculo()){
+                return auto;
+            }
+        }
+        return autosList.get(0);
+    }
+
+    public static Cliente getCliente(Context c, Renta renta){
+        for (Cliente cliente: clientes) {
+            if (cliente.getId_Usuario() == renta.getId_usuario()){
+                return cliente;
+            }
+        }
+        return clientes.get(0);
     }
 }

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -44,7 +45,7 @@ public class AutoSelected extends AppCompatActivity {
         btn_rentar = findViewById(R.id.btnPagar);
 
         cargarSP();
-        ubicacion = Globals.getCurrentLocation().toString();
+        ubicacion = Globals.getCurrentLocation().getLatitude() + "," + Globals.getCurrentLocation().getLongitude();
         f_i = fecha_inicio.split("-");
         f_f = fecha_fin.split("-");
         dif = Integer.parseInt(f_f[2]) - Integer.parseInt(f_i[2]);
@@ -122,4 +123,6 @@ public class AutoSelected extends AppCompatActivity {
         fecha_inicio = inicio;
         fecha_fin = fin;
     }
+
+
 }

@@ -1,4 +1,4 @@
-package com.example.usuariocliente.Driver;
+package com.example.usuariocliente.Driver.Home;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.example.usuariocliente.Adapter.RentasAdapter;
-import com.example.usuariocliente.MainActivity;
 import com.example.usuariocliente.Models.Globals;
 import com.example.usuariocliente.Models.Handler;
 import com.example.usuariocliente.Models.Renta;
@@ -33,7 +32,7 @@ public class ListaRenta extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_usuario_driver_menu);
+        setContentView(R.layout.activity_lista_renta);
         setTitle("Lista de Entregas pendientes");
 
         Back = findViewById(R.id.backarrow);
@@ -46,28 +45,6 @@ public class ListaRenta extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rvRentas.setLayoutManager(llm);
 
-        //NAvegation Menu
-        Back.setOnClickListener(v -> {
-            i = new Intent(getApplicationContext(), DriverHistory.class);
-            Toast.makeText(getApplicationContext(), "Regresar a Pantalla anterior, en este caso el menu de historial", Toast.LENGTH_LONG).show();
-            startActivity(i);
-        });
-        Historial.setOnClickListener(v -> {
-            i = new Intent(getApplicationContext(), DriverHistory.class);
-            Toast.makeText(getApplicationContext(), "Historial", Toast.LENGTH_SHORT).show();
-            startActivity(i);
-        });
-        Usuario.setOnClickListener(v -> {
-            i = new Intent(getApplicationContext(), DriverInfo.class);
-            Toast.makeText(getApplicationContext(), "Opciones de usuario", Toast.LENGTH_SHORT).show();
-            startActivity(i);
-        });
-        CerrarSesion.setOnClickListener(v -> {
-            i = new Intent(getApplicationContext(), MainActivity.class);
-            Globals.cerrarSesion(getApplicationContext());
-            Toast.makeText(getApplicationContext(), "Regresar a Login", Toast.LENGTH_SHORT).show();
-            startActivity(i);
-        });
         //Navegation Menu
         //GetRenta gr = new GetRenta(getApplication());
         //gr.execute();

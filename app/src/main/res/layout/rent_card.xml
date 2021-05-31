@@ -9,7 +9,7 @@
         android:id="@+id/cvRenta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#e1e2e3"
+        android:backgroundTint="@color/teal_700"
         android:elevation="25dp"
         app:cardCornerRadius="10dp">
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">UsuarioCliente</string>
+    <string name="app_name">CinderellaRide</string>
     <string name="title_activity_auto_selected">AutoSelected</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

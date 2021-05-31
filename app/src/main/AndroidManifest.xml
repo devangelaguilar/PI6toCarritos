@@ -13,27 +13,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UsuarioCliente">
-        <activity android:name=".Cliente.ClienteMenu"></activity>
-        <activity android:name=".Driver.DriverMenu" />
-
-        <receiver android:name=".Models.MyLocation" />
-
-        <activity android:name=".Registro" />
-        <activity android:name=".Driver.DriverInfo" />
-        <activity android:name=".Driver.HistorialSelectedDriver" />
-        <activity android:name=".Driver.DriverHistory" />
-        <activity android:name=".Driver.ListaRenta" />
-        <activity android:name=".Cliente.Options.e" />
-        <activity android:name=".Cliente.History.HistorySelected" />
-        <activity android:name=".Cliente.Home.AutoList" />
-        <activity android:name=".Cliente.Home.AutoSelected" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Models.Maps.MapActivity"></activity>
+        <activity android:name=".Driver.Home.RentaSelected" />
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Cliente.ClienteMenu" />
+        <activity android:name=".Driver.DriverMenu" />
+
+        <receiver android:name=".Models.Location.MyLocation" />
+
+        <activity android:name=".Registro" />
+        <activity android:name=".Driver.History.DriverHistorySelected" />
+        <activity android:name=".Driver.Home.ListaRenta" />
+        <activity android:name=".Cliente.History.HistorySelected" />
+        <activity android:name=".Cliente.Home.AutoList" />
+        <activity android:name=".Cliente.Home.AutoSelected" />
+        <activity android:name=".Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
     </application>
 
 </manifest>

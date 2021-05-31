@@ -1,4 +1,4 @@
-package com.example.usuariocliente.Cliente.Options;
+package com.example.usuariocliente.Driver.Info;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,12 +16,12 @@ import androidx.fragment.app.Fragment;
 import com.example.usuariocliente.Login;
 import com.example.usuariocliente.R;
 
-public class ClienteSettings extends Fragment {
+public class DriverInfo extends Fragment {
     Button logout;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.settings_cliente, container, false);
+        View view = inflater.inflate(R.layout.info_driver, container, false);
         logout = view.findViewById(R.id.logout);
         logout.setOnClickListener(v -> {
             logOut();

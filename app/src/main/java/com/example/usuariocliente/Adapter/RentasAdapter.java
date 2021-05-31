@@ -1,6 +1,7 @@
 package com.example.usuariocliente.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.usuariocliente.Driver.Home.RentaSelected;
+import com.example.usuariocliente.Models.Auto;
+import com.example.usuariocliente.Models.Cliente;
+import com.example.usuariocliente.Models.Globals;
 import com.example.usuariocliente.Models.Renta;
 import com.example.usuariocliente.R;
 
@@ -43,20 +48,22 @@ public class RentasAdapter extends RecyclerView.Adapter<RentasAdapter.RentaViewH
 
     @Override
     public void onBindViewHolder(@NonNull RentaViewHolder holder, int position) {
-        //Auto auto = Globals.getAuto(rentasList.get(position), c);
+        Auto auto = Globals.getAuto(c, rentas.get(position));
+        Cliente cliente = Globals.getCliente(c, rentas.get(position));
         //List<Cliente> cliente = Globals.getCliente(c, rentasList.get(position));
-        holder.nombre.setText("ID cliente: " + rentas.get(position).getId_usuario());
-        //holder.placas.setText(auto.getPlacas());
-        //holder.usuario.setText(cliente.get(0).getNombres() + " " + cliente.get(0).getApellido_paterno() + " " + cliente.get(0).getApellido_materno());
+
+        holder.nombre.setText(auto.getModelo());
+        holder.placas.setText(auto.getPlacas());
+        holder.usuario.setText(cliente.getNombres());
 
         //poner foto
 
         holder.cv.setOnClickListener(v -> {
             Renta renta = rentas.get(position);
-            Toast.makeText(c, renta.getFecha_inicio(), Toast.LENGTH_SHORT).show();
-            //Intent i = new Intent(c, Rentaselected.class);
-            //i.putExtra("renta", renta);
-            //c.startActivity(i);
+            //Toast.makeText(c, renta.getId_usuario()+"", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(c, RentaSelected.class);
+            i.putExtra("renta", renta);
+            c.startActivity(i);
         });
         holder.entregar.setOnClickListener(v -> Toast.makeText(c, "ENTREGAR", Toast.LENGTH_SHORT).show());
 
