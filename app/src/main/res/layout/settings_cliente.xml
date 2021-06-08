@@ -115,15 +115,23 @@
         android:layout_marginLeft="20dp"
         android:id="@+id/ATotal"/>
 
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar método de pago"
+        android:layout_below="@id/ATotal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/white"
+        android:id="@+id/metodopagobutton"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cerrar sesion"
-        android:layout_below="@id/ATotal"
+        android:layout_below="@id/metodopagobutton"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
         android:textColor="@color/white"
         android:id="@+id/logout"/>
 </RelativeLayout>
