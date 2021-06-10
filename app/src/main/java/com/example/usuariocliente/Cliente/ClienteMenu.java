@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment;
 
 import android.Manifest;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -40,7 +42,7 @@ public class ClienteMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cliente_menu);
-
+        cargarSP();
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ClienteHome()).commit();
@@ -114,5 +116,12 @@ public class ClienteMenu extends AppCompatActivity {
         this.runOnUiThread(() -> {
             Globals.setCurrentLocation(location);
         });
+    }
+
+    private void cargarSP(){
+        SharedPreferences preferences = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
+        int usuario = preferences.getInt("id_unico", 0);
+
+        Globals.id_usuario = usuario;
     }
 }

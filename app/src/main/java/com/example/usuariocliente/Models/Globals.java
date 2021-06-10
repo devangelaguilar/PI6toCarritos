@@ -31,6 +31,7 @@ public class Globals {
     public static Location getCurrentLocation() {
         return currentLocation;
     }
+    public static int id_usuario;
 
     public static void setCurrentLocation(Location currentLocation) {
         Globals.currentLocation = currentLocation;
@@ -212,5 +213,14 @@ public class Globals {
             }
         }
         return clientes.get(0);
+    }
+
+    public static Cliente getCliente(int id_usuario){
+        for (Cliente cliente: clientes) {
+            if (cliente.getId_Usuario() == id_usuario){
+                return cliente;
+            }
+        }
+        return null;
     }
 }
