@@ -3,11 +3,19 @@ package com.example.usuariocliente.Models;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.location.Location;
+import android.util.Log;
+import android.util.SparseArray;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.example.usuariocliente.Cliente.ClienteMenu;
+import com.example.usuariocliente.Driver.DriverMenu;
 import com.example.usuariocliente.Login;
 import com.example.usuariocliente.SplashScreen;
 
@@ -15,6 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,6 +37,7 @@ public class Globals {
     public static Location currentLocation;
     public static List<Cliente> clientes = new ArrayList<>();
     public static List<Auto> autosList = new ArrayList<>();
+    public static ArrayList<Bitmap> autoPics = new ArrayList<>();
     public static Location getCurrentLocation() {
         return currentLocation;
     }
@@ -161,6 +171,10 @@ public class Globals {
                             clienteObj.getString("direccion"), clienteObj.getString("fecha_de_nacimiento"));
                     clientes.add(cliente);
                 }
+                Intent intent = new Intent(c, DriverMenu.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                c.startActivity(intent);
+                ((SplashScreen)c).finish();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -181,9 +195,6 @@ public class Globals {
                             Globals.getColor(autoObj.getInt("color")), autoObj.getString("foto"), autoObj.getInt("status"), autoObj.getString("precio"), autoObj.getString("transmision"));
                     autosList.add(a);
                 }
-                Intent intent = new Intent(c, Login.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                c.startActivity(intent);
 
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -38,9 +38,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-//        i = new Intent(MainActivity.this, UsuarioClienteMenu.class);
-//        startActivity(i);
-        cargarSP();
+
         edit_email = findViewById(R.id.edit_email);
         edit_pass = findViewById(R.id.edit_pass);
         login = findViewById(R.id.btn_login);
@@ -148,21 +146,5 @@ public class Login extends AppCompatActivity {
         editor.apply();
     }
 
-    private void cargarSP(){
-        SharedPreferences preferences = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
-        Boolean sesion_iniciada = preferences.getBoolean("sesion_iniciada", Boolean.FALSE);
-        int clase_usuariosp = preferences.getInt("clase_usuario", 0);
 
-        if (sesion_iniciada.equals(Boolean.TRUE)){
-            if(clase_usuariosp == 1){
-                i = new Intent(getApplicationContext(), ClienteMenu.class);
-                startActivity(i);
-                finish();
-            } else if (clase_usuariosp == 2){
-                i = new Intent(getApplicationContext(), DriverMenu.class);
-                startActivity(i);
-                finish();
-            }
-        }
-    }
 }

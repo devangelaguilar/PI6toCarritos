@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.usuariocliente.Cliente.Home.AutoList;
 import com.example.usuariocliente.Models.Auto;
 import com.example.usuariocliente.Models.Globals;
@@ -46,7 +47,7 @@ public class AutosAdapter extends RecyclerView.Adapter<AutosAdapter.AutoViewHold
 
     @Override
     public void onBindViewHolder(@NonNull AutoViewHolder holder, int position) {
-
+        Glide.with(c).load("https://cinderellaride.000webhostapp.com/assets/img/autos/" + autos.get(position).getId_vehiculo() + ".png").asBitmap().into(holder.foto);
         holder.nombre.setText(autos.get(position).getModelo());
         holder.transmision.setText(autos.get(position).getTransmision());
         holder.puertas.setText("4 puertas"); //Insertar un if donde cheque cuantas puertas tiene dependiendo del tipo de auto
