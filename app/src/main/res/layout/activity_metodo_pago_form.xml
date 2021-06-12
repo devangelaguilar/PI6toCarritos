@@ -98,19 +98,7 @@ tools:context=".Cliente.Options.metodoPagoForm">
         android:layout_marginRight="30dp"
         android:layout_marginTop="0dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/uno"
-            android:layout_below="@+id/layout_edit_direccion"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/dos"
-            android:orientation="vertical"
-            android:layout_below="@+id/uno"/>
 
     </RelativeLayout>
 
@@ -123,6 +111,12 @@ tools:context=".Cliente.Options.metodoPagoForm">
         android:textColor="@color/white"
         android:layout_marginTop="10dp"
         android:text="Añadir método de pago" />
+
+    <ListView
+        android:id="@+id/ListaMetodoPagos"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_below="@id/btntarjeta"></ListView>
 </RelativeLayout>
 
 </ScrollView>
