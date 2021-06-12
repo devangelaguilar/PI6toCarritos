@@ -41,6 +41,8 @@ public class metodoPagoForm extends AppCompatActivity {
     EditText nametarjeta, numtarjeta, fechatarjeta, cvvtarjeta;
     String id_user;
     ListView tarjetasexistentes;
+    ArrayList<String> tarjetaList = new ArrayList<>();
+    ArrayAdapter<String> tarjetaAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,29 +79,16 @@ public class metodoPagoForm extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
-                            JSONArray jsonArray = jsonObject.getJSONArray("login");
+                            JSONArray jsonArray = jsonObject.getJSONArray("numeracion_tarjeta");
 
                             if (success.equals("1")) {
 
                                 for (int i = 0; i < jsonArray.length(); i++) {
-
                                     JSONObject object = jsonArray.getJSONObject(i);
-
-
-                                    String numeracion_tarjeta = object.getString("numeracion_tarjeta").trim();
-
-                                    int length = jsonArray.length();
-                                    List<String> listadetarjetas = new ArrayList<String>(length);
-                                    for (int t = 0; t < length; t++)
-                                    {
-                                        listadetarjetas.add(jsonArray.getString(t));
-                                    }
-                                    
-                                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                                            this,
-                                            android.R.layout.simple_list_item_1,
-                                            listadetarjetas );
-                                    tarjetasexistentes.setAdapter(arrayAdapter);
+                                    String numerotarjeta = object.getString("numeracion_tarjeta");
+                                    tarjetaList.add(numerotarjeta);
+                                    tarjetaAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tarjetaList );
+                                    tarjetasexistentes.setAdapter(tarjetaAdapter);
 
                                 }
 
