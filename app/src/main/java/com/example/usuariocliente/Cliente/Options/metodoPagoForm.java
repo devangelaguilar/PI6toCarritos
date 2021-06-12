@@ -87,9 +87,14 @@ public class metodoPagoForm extends AppCompatActivity {
 
 
                                     String numeracion_tarjeta = object.getString("numeracion_tarjeta").trim();
-                                    List<String> listadetarjetas = new ArrayList<String>();
 
-                                    listadetarjetas.add(numeracion_tarjeta);
+                                    int length = jsonArray.length();
+                                    List<String> listadetarjetas = new ArrayList<String>(length);
+                                    for (int t = 0; t < length; t++)
+                                    {
+                                        listadetarjetas.add(jsonArray.getString(t));
+                                    }
+                                    
                                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                                             this,
                                             android.R.layout.simple_list_item_1,
