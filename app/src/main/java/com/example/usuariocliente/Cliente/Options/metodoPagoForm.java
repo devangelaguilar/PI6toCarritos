@@ -78,10 +78,10 @@ public class metodoPagoForm extends AppCompatActivity {
                     response -> {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            String success = jsonObject.getString("success");
+
                             JSONArray jsonArray = jsonObject.getJSONArray("numeracion_tarjeta");
 
-                            if (success.equals("1")) {
+
 
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject object = jsonArray.getJSONObject(i);
@@ -91,10 +91,9 @@ public class metodoPagoForm extends AppCompatActivity {
                                     tarjetasexistentes.setAdapter(tarjetaAdapter);
 
                                 }
+                                tarjetaAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tarjetaList);
+                                tarjetasexistentes.setAdapter(tarjetaAdapter);
 
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Error en response" + success, Toast.LENGTH_SHORT).show();
-                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
