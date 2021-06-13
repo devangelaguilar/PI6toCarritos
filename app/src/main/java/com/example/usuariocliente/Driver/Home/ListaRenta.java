@@ -32,13 +32,9 @@ public class ListaRenta extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_renta);
+        setContentView(R.layout.home_driver);
         setTitle("Lista de Entregas pendientes");
 
-        Back = findViewById(R.id.backarrow);
-        Historial = findViewById(R.id.historialicon);
-        Usuario = findViewById(R.id.Usuarioicon);
-        CerrarSesion = findViewById(R.id.cerrarsesionicon);
         rvRentas = findViewById(R.id.rvRentas);
         showList();
         rvRentas.setHasFixedSize(true);

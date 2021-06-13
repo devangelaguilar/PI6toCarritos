@@ -53,6 +53,10 @@ public class SplashScreen extends AppCompatActivity {
             } else if (clase_usuariosp == 2){
                 Globals.getAutos(getApplicationContext());
             }
+        } else {
+            i = new Intent(this, Login.class);
+            startActivity(i);
+            finish();
         }
     }
 }
