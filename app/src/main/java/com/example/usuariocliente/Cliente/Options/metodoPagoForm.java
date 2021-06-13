@@ -87,7 +87,7 @@ public class metodoPagoForm extends AppCompatActivity {
                                     JSONObject object = jsonArray.getJSONObject(i);
                                     String numerotarjeta = object.getString("numeracion_tarjeta");
                                     tarjetaList.add(numerotarjeta);
-                                    tarjetaAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tarjetaList );
+                                    tarjetaAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tarjetaList);
                                     tarjetasexistentes.setAdapter(tarjetaAdapter);
 
                                 }
@@ -98,7 +98,7 @@ public class metodoPagoForm extends AppCompatActivity {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(this, "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Correo o contraseña incorrectos" + e, Toast.LENGTH_SHORT).show();
                         }
                     },
                     error -> Toast.makeText(this, "Contacte a Soporte " +error.toString(), Toast.LENGTH_SHORT).show())

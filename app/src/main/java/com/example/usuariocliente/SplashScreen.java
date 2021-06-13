@@ -49,12 +49,9 @@ public class SplashScreen extends AppCompatActivity {
         if (sesion_iniciada.equals(Boolean.TRUE)){
             if(clase_usuariosp == 1){
                 //Globals.getPics(this);
-                i = new Intent(this, ClienteMenu.class);
-                startActivity(i);
-                finish();
+                Globals.getClientesU(getApplicationContext());
             } else if (clase_usuariosp == 2){
                 Globals.getAutos(getApplicationContext());
-                Globals.getClientes(getApplicationContext());
             }
         }
     }

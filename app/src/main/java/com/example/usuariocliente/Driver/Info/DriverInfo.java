@@ -59,7 +59,7 @@ public class DriverInfo extends Fragment {
         Telefono.setText(cliente.getTelefono());
         Direccion.setText(cliente.getDireccion());
         FechaNacimiento.setText(cliente.getFecha_de_nacimiento());
-        MetodoPago.setText("En desarrollo");
+        //MetodoPago.setText("En desarrollo");
     }
 
     private void logOut() {

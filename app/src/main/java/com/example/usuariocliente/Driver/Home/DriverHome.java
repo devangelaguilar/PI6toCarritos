@@ -2,6 +2,7 @@ package com.example.usuariocliente.Driver.Home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +40,7 @@ public class DriverHome extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_driver, container, false);
         context = getContext();
-
+        cargarSP();
         rvRentas = view.findViewById(R.id.rvRentas);
         showList();
         rvRentas.setHasFixedSize(true);
@@ -59,7 +60,8 @@ public class DriverHome extends Fragment {
                     JSONObject rentaObj = array.getJSONObject(i);
                     Renta a = new Renta(rentaObj.getInt("id_renta"), rentaObj.getInt("id_vehiculo"), rentaObj.getInt("id_usuario"),
                             rentaObj.getString("ubicacion"), rentaObj.getInt("status"), rentaObj.getString("fecha_inicio"), rentaObj.getString("fecha_fin"));
-                    rentasList.add(a);
+                    if (a.getStatus() == 1)
+                        rentasList.add(a);
                 }
                 RentasAdapter adapter = new RentasAdapter(rentasList);
                 rvRentas.setAdapter(adapter);
@@ -71,5 +73,12 @@ public class DriverHome extends Fragment {
         }, error -> { });
         Handler.getInstance(context).addToRequestQueue(stringRequest);
 
+    }
+    private void cargarSP(){
+        SharedPreferences preferences = getActivity().getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
+        int usuario = preferences.getInt("id_unico", 0);
+
+        Globals.id_usuario = usuario;
+        //Toast.makeText(this, "a " + Globals.id_usuario, Toast.LENGTH_LONG).show();
     }
 }

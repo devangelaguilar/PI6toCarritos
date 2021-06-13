@@ -63,9 +63,8 @@ public class ListaRenta extends AppCompatActivity {
                     JSONObject rentaObj = array.getJSONObject(i);
                     Renta a = new Renta(rentaObj.getInt("id_renta"), rentaObj.getInt("id_vehiculo"), rentaObj.getInt("id_usuario"),
                             rentaObj.getString("ubicacion"), rentaObj.getInt("status"), rentaObj.getString("fecha_inicio"), rentaObj.getString("fecha_fin"));
-
-                    rentasList.add(a);
-
+                    if (a.getStatus() == 1)
+                        rentasList.add(a);
                 }
                 RentasAdapter adapter = new RentasAdapter(rentasList);
                 rvRentas.setAdapter(adapter);

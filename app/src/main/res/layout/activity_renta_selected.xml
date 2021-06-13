@@ -90,6 +90,7 @@
         android:background="@layout/boton_redondo"
         android:textColor="#FFF"
         android:text="Entregar"
+        android:onClick="entregar"
         android:id="@+id/btn_entregar"/>
     
 </RelativeLayout>

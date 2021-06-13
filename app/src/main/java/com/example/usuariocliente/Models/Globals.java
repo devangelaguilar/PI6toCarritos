@@ -174,7 +174,30 @@ public class Globals {
                 Intent intent = new Intent(c, DriverMenu.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 c.startActivity(intent);
-                ((SplashScreen)c).finish();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }, error -> { });
+        Handler.getInstance(c).addToRequestQueue(stringRequest);
+
+    }
+
+    public static void getClientesU(Context c) {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Globals.ip + "getUsuario.php", response -> {
+            try {
+                JSONObject obj = new JSONObject(response);
+                JSONArray array = obj.getJSONArray("usuarios");
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject clienteObj = array.getJSONObject(i);
+                    Cliente cliente = new Cliente(clienteObj.getInt("id_Usuario"), clienteObj.getInt("clase_usuario"), clienteObj.getString("correo"), clienteObj.getString("nombre"),
+                            clienteObj.getString("apellido_paterno"), clienteObj.getString("apellido_materno"), clienteObj.getString("telefono"),
+                            clienteObj.getString("direccion"), clienteObj.getString("fecha_de_nacimiento"));
+                    clientes.add(cliente);
+                }
+                Intent intent = new Intent(c, ClienteMenu.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                c.startActivity(intent);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -195,6 +218,7 @@ public class Globals {
                             Globals.getColor(autoObj.getInt("color")), autoObj.getString("foto"), autoObj.getInt("status"), autoObj.getString("precio"), autoObj.getString("transmision"));
                     autosList.add(a);
                 }
+                getClientes(c);
 
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -123,5 +123,6 @@ public class ClienteMenu extends AppCompatActivity {
         int usuario = preferences.getInt("id_unico", 0);
 
         Globals.id_usuario = usuario;
+        //Toast.makeText(this, "a " + Globals.id_usuario, Toast.LENGTH_LONG).show();
     }
 }
