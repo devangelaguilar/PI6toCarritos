@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <SearchView
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAutos"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/search_bar"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        tools:layout_editor_absoluteX="209dp"
+        tools:layout_editor_absoluteY="288dp" />
 </RelativeLayout>

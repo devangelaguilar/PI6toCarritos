@@ -195,9 +195,7 @@ public class Globals {
                             clienteObj.getString("direccion"), clienteObj.getString("fecha_de_nacimiento"));
                     clientes.add(cliente);
                 }
-                Intent intent = new Intent(c, ClienteMenu.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                c.startActivity(intent);
+                getAutosU(c);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -205,7 +203,49 @@ public class Globals {
         Handler.getInstance(c).addToRequestQueue(stringRequest);
 
     }
+    public static void getClientesR(Context c) {
 
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Globals.ip + "getUsuario.php", response -> {
+            try {
+                JSONObject obj = new JSONObject(response);
+                JSONArray array = obj.getJSONArray("usuarios");
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject clienteObj = array.getJSONObject(i);
+                    Cliente cliente = new Cliente(clienteObj.getInt("id_Usuario"), clienteObj.getInt("clase_usuario"), clienteObj.getString("correo"), clienteObj.getString("nombre"),
+                            clienteObj.getString("apellido_paterno"), clienteObj.getString("apellido_materno"), clienteObj.getString("telefono"),
+                            clienteObj.getString("direccion"), clienteObj.getString("fecha_de_nacimiento"));
+                    clientes.add(cliente);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }, error -> { });
+        Handler.getInstance(c).addToRequestQueue(stringRequest);
+
+    }
+    public static void getAutosU(Context c){
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Globals.ip + "getAutos.php", response -> {
+            try {
+                JSONObject obj = new JSONObject(response);
+                JSONArray array = obj.getJSONArray("vehiculos");
+                for (int i = 0; i < array.length(); i++){
+                    JSONObject autoObj = array.getJSONObject(i);
+                    Auto a = new Auto(autoObj.getInt("id_vehiculo"), Globals.getTipo_vehiculo(autoObj.getInt("tipo_vehiculo")), autoObj.getString("placas"), autoObj.getString("modelo"),
+                            Globals.getColor(autoObj.getInt("color")), autoObj.getString("foto"), autoObj.getInt("status"), autoObj.getString("precio"), autoObj.getString("transmision"));
+                    autosList.add(a);
+                }
+                Intent intent = new Intent(c, ClienteMenu.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                c.startActivity(intent);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }, error -> { });
+        Handler.getInstance(c).addToRequestQueue(stringRequest);
+
+    }
     public static void getAutos(Context c){
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Globals.ip + "getAutos.php", response -> {
@@ -238,7 +278,7 @@ public class Globals {
                 return auto;
             }
         }
-        return autosList.get(0);
+        return null;
     }
 
     public static Cliente getCliente(Context c, Renta renta){

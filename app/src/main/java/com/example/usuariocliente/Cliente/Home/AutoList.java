@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -26,9 +27,7 @@ import java.util.List;
 
 
 public class AutoList extends AppCompatActivity {
-    ImageView Back,Historial,Usuario,CerrarSesion;
     RecyclerView rvAutos;
-    Intent i;
     List<Auto> autosList = new ArrayList<>();
 
     @Override
@@ -37,10 +36,6 @@ public class AutoList extends AppCompatActivity {
         setContentView(R.layout.activity_auto_list);
         setTitle("Menu Lista de Autos");
         rvAutos = findViewById(R.id.rvAutos);
-        Back = findViewById(R.id.backarrow);
-        Historial = findViewById(R.id.historialicon);
-        Usuario = findViewById(R.id.Usuarioicon);
-        CerrarSesion = findViewById(R.id.cerrarsesionicon);
         showList();
 
         rvAutos.setHasFixedSize(true);
@@ -75,5 +70,9 @@ public class AutoList extends AppCompatActivity {
             }
         }, error -> { Toast.makeText(getApplicationContext(), error + " ", Toast.LENGTH_LONG).show();});
         Handler.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
+    }
+
+    public void back(View view) {
+        finish();
     }
 }

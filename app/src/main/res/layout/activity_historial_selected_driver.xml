@@ -6,179 +6,78 @@
     android:layout_height="match_parent"
     tools:context=".Driver.History.DriverHistorySelected">
 
-    <GridLayout
-        android:id="@+id/Icons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="4"
-        android:orientation="horizontal"
-        android:rowCount="2">
+    <ImageView
+        android:id="@+id/backarrow"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/baseline_arrow_back_18"
+        android:onClick="back"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="24dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
-            android:text="back"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Historial"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="25dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Usuario"
-            android:textStyle="bold"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/black"
-            android:layout_marginRight="20dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cerrar Sesión"
-            android:textStyle="bold"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="25dp"
-            android:textColor="@color/black"/>
-
-        <ImageView
-            android:id="@+id/backarrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            app:srcCompat="?attr/actionModeCloseDrawable" />
-
-        <ImageView
-            android:id="@+id/historialicon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="20dp"
-            app:srcCompat="@android:drawable/ic_menu_recent_history" />
-
-        <ImageView
-            android:id="@+id/Usuarioicon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            app:srcCompat="@android:drawable/ic_menu_myplaces" />
-
-        <ImageView
-            android:id="@+id/cerrarsesionicon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
-
-    </GridLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Historial de Viaje"
-        android:id="@+id/Historial"
-        android:layout_below="@id/Icons"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/black"
-        android:textSize="18dp"/>
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="256dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/backarrow"/>
 
 
     <TextView
+        android:id="@+id/modelo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Modelo"
-        android:id="@+id/BModelo"
-        android:layout_below="@id/Historial"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/black"
-        android:textSize="18dp"
-        />
+        android:layout_below="@id/img"
+        android:text="modelo"
+        android:textSize="26sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/black"/>
 
     <TextView
-        android:id="@+id/BColor"
+        android:id="@+id/placas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Color"
-        android:layout_marginLeft="90dp"
-        android:layout_marginTop="125dp"
-        android:layout_toRightOf="@id/BModelo"
-        android:textColor="@color/black"
-        android:textSize="18dp" />
+        android:layout_below="@id/modelo"
+        android:text="placas"
+        android:textSize="26sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/black"/>
 
     <TextView
-        android:id="@+id/BTipo"
+        android:id="@+id/usuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/BModelo"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="39dp"
-        android:text="Tipo"
-        android:textColor="@color/black"
-        android:textSize="18dp" />
+        android:layout_below="@id/placas"
+        android:text="usuario"
+        android:textSize="26sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/black"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/BTipo"
+    <ImageView
+        android:id="@+id/location"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/location"
         android:layout_marginTop="30dp"
-        android:text="Placas"
-        android:textSize="18dp"
-        android:textColor="@color/black"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/BPlacas"/>
-
+        android:layout_below="@id/usuario"
+        android:onClick="openLocation"/>
     <TextView
+        android:id="@+id/punto_de_entrega"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/BPlacas"
-        android:layout_marginTop="30dp"
-        android:text="Foto"
-        android:textSize="18dp"
-        android:textColor="@color/black"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/Bfoto"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/Bfoto"
-        android:layout_marginTop="30dp"
-        android:text="Fecha de renta"
-        android:textSize="18dp"
-        android:textColor="@color/black"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/BEstado"/>
-
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/BEstado"
-        android:layout_marginTop="30dp"
-        android:text="DATO"
-        android:textSize="18dp"
-        android:textColor="@color/black"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/BTransmision"/>
+        android:layout_below="@id/usuario"
+        android:layout_toEndOf="@id/location"
+        android:text="Ver punto de entrega"
+        android:textSize="30sp"
+        android:layout_marginTop="31dp"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/purple_200"
+        android:onClick="openLocation"/>
 
 
 </RelativeLayout>

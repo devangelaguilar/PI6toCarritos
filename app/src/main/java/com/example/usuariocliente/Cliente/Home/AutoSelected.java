@@ -17,6 +17,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.example.usuariocliente.Models.Auto;
 import com.example.usuariocliente.Models.Globals;
 import com.example.usuariocliente.R;
@@ -25,8 +26,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AutoSelected extends AppCompatActivity {
-    ImageView Back,Historial,Usuario,CerrarSesion;
-    TextView txtmodelo, txtcolor, tipo1, tipo2, tipo3, tipo4, tipo5, tipo6, tipo7;
+    ImageView foto;
+    TextView txtmodelo, tipo1, tipo2, tipo5, tipo6, tipo7;
     Intent i;
     Button btn_rentar;
     Auto autodata;
@@ -38,10 +39,8 @@ public class AutoSelected extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTitle("Menu Auto seleccionado");
         setContentView(R.layout.activity_auto_selected);
-        Back = findViewById(R.id.backarrow);
-        Historial = findViewById(R.id.historialicon);
-        Usuario = findViewById(R.id.Usuarioicon);
-        CerrarSesion = findViewById(R.id.cerrarsesionicon);
+        foto = findViewById(R.id.img);
+
         btn_rentar = findViewById(R.id.btnPagar);
 
         cargarSP();
@@ -51,11 +50,9 @@ public class AutoSelected extends AppCompatActivity {
         dif = Integer.parseInt(f_f[2]) - Integer.parseInt(f_i[2]);
 
         //Data in sheet
-        txtmodelo=findViewById(R.id.txtmodelo);
-        txtcolor=findViewById(R.id.txtcolor);
+        txtmodelo=findViewById(R.id.AModelo);
         tipo1=findViewById(R.id.tipo1);
         tipo2=findViewById(R.id.tipo2);
-        tipo3=findViewById(R.id.tipo3);
         tipo5=findViewById(R.id.tipo5);
         tipo6=findViewById(R.id.tipo6);
         tipo7=findViewById(R.id.tipo7);
@@ -64,13 +61,11 @@ public class AutoSelected extends AppCompatActivity {
         Intent intent = getIntent();
         autodata = (Auto) intent.getSerializableExtra("auto");
         //Toast.makeText(this, ""+autodata.getColor(), Toast.LENGTH_SHORT).show();
-
+        Glide.with(this).load("https://cinderellaride.000webhostapp.com/assets/img/autos/" + autodata.getId_vehiculo() + ".png").asBitmap().into(foto);
         //Build Data Sheet
         txtmodelo.setText(autodata.getModelo());
-        txtcolor.setText(autodata.getColor());
         tipo1.setText(autodata.getTipo_vehiculo());
         tipo2.setText(autodata.getPlacas());
-        tipo3.setText(autodata.getFoto());
         tipo5.setText(autodata.getTransmision());
         tipo6.setText("$" + autodata.getPrecio());
         double total = Double.parseDouble(autodata.getPrecio()) * dif;
@@ -125,4 +120,5 @@ public class AutoSelected extends AppCompatActivity {
     }
 
 
+    public void back(View view) { finish(); }
 }

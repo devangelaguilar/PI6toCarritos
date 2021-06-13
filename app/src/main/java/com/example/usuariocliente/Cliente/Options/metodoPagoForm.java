@@ -78,10 +78,7 @@ public class metodoPagoForm extends AppCompatActivity {
                     response -> {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-
                             JSONArray jsonArray = jsonObject.getJSONArray("numeracion_tarjeta");
-
-
 
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject object = jsonArray.getJSONObject(i);
@@ -93,7 +90,6 @@ public class metodoPagoForm extends AppCompatActivity {
                                 }
                                 tarjetaAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tarjetaList);
                                 tarjetasexistentes.setAdapter(tarjetaAdapter);
-
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -109,10 +105,8 @@ public class metodoPagoForm extends AppCompatActivity {
                     return params;
                 }
             };
-
             RequestQueue requestQueue = Volley.newRequestQueue(this);
             requestQueue.add(stringRequest);
-
     }
 
     private void registroMetodoPago() {

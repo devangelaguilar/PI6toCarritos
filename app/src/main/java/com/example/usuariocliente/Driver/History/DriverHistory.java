@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
+import com.example.usuariocliente.Adapter.HistoryRentasAdapter;
 import com.example.usuariocliente.Adapter.RentasAdapter;
 import com.example.usuariocliente.Models.Globals;
 import com.example.usuariocliente.Models.Handler;
@@ -57,7 +58,8 @@ public class DriverHistory extends Fragment {
                     if (a.getStatus() == 0)
                         rentasList.add(a);
                 }
-                RentasAdapter adapter = new RentasAdapter(rentasList);
+                //Toast.makeText(context, rentasList.size() + " ", Toast.LENGTH_LONG).show();
+                HistoryRentasAdapter adapter = new HistoryRentasAdapter(rentasList);
                 rvRentas.setAdapter(adapter);
 
             } catch (JSONException e) {

@@ -40,7 +40,7 @@ public class ClienteSettings extends Fragment {
     String idUsuario;
     String URL_SERVIDOR= Globals.ip + "GetUserInfo.php";
     TextView Nombre, Apellido, Correo, Telefono, Foto, Direccion, FechaNacimiento, MetodoPago, Licencia;
-    private int id_usuario = Globals.id_usuario;
+    private final int id_usuario = Globals.id_usuario;
 
     @Nullable
     @Override

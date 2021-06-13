@@ -21,6 +21,9 @@ import com.android.volley.toolbox.Volley;
 import com.example.usuariocliente.Cliente.ClienteMenu;
 import com.example.usuariocliente.Models.Globals;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -29,7 +32,7 @@ import java.util.regex.Pattern;
 public class Registro extends AppCompatActivity {
 
     Intent i;
-
+    int id_u;
     EditText nombres, apellido_paterno, apellido_materno, correo, password, telefono, fecha_de_nacimiento, licencia;
     Button Registro;
     TextView loginReturn;
@@ -85,9 +88,9 @@ public class Registro extends AppCompatActivity {
     public void registrar() {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Globals.ip + "registrar.php", response -> {
-            if (response.equals("MENSAJE")){
+            if (!response.contains("Error")){
                 i = new Intent(getApplicationContext(), ClienteMenu.class);
-                setSharedPreferences(nombres.getText().toString(), apellido_paterno.getText().toString(), apellido_materno.getText().toString(), correo.getText().toString(), telefono.getText().toString(), fecha_de_nacimiento.getText().toString());
+                setSharedPreferences(Integer.parseInt(response),nombres.getText().toString(), apellido_paterno.getText().toString(), apellido_materno.getText().toString(), correo.getText().toString(), telefono.getText().toString(), fecha_de_nacimiento.getText().toString());
                 startActivity(i);
                 finish();
             } else {
@@ -154,10 +157,11 @@ public class Registro extends AppCompatActivity {
             return false;
     }
 
-    public void setSharedPreferences(String nombres, String apellido_paterno, String apellido_materno, String mail, String telefono, String fecha_de_nacimiento) {
+    public void setSharedPreferences(int id, String nombres, String apellido_paterno, String apellido_materno, String mail, String telefono, String fecha_de_nacimiento) {
         SharedPreferences preferences = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("id_unico", id);
         editor.putString("nombres", nombres);
         editor.putString("apellido_paterno", apellido_paterno);
         editor.putString("apellido_materno", apellido_materno);

@@ -42,7 +42,9 @@ public class ClienteMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cliente_menu);
+        Globals.getClientesR(this);
         cargarSP();
+        Toast.makeText(getApplicationContext(), "" + Globals.id_usuario, Toast.LENGTH_LONG).show();
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ClienteHome()).commit();

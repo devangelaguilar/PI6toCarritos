@@ -93,13 +93,9 @@ public class Login extends AppCompatActivity {
 
                                     //If Usuario Cliente TRUE
                                     if (clase_usuario == 1){
-                                        Intent intent = new Intent(getApplicationContext(), ClienteMenu.class);
-                                        startActivity(intent);
-                                        finish();
+                                        Globals.getClientesU(getApplicationContext());
                                     } else if (clase_usuario == 2){
-                                        Intent intent = new Intent(getApplicationContext(), DriverMenu.class);
-                                        startActivity(intent);
-                                        finish();
+                                        Globals.getAutos(getApplicationContext());
                                     }
 
                                 }

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -12,6 +14,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.example.usuariocliente.Models.Auto;
+import com.example.usuariocliente.Models.Cliente;
 import com.example.usuariocliente.Models.Globals;
 import com.example.usuariocliente.Models.Maps.MapActivity;
 import com.example.usuariocliente.Models.Renta;
@@ -24,12 +29,24 @@ import static com.example.usuariocliente.Models.Globals.id_usuario;
 
 public class RentaSelected extends AppCompatActivity {
     Renta renta;
+    TextView modelo, placas, usuario;
+    ImageView foto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_renta_selected);
         Intent intent = getIntent();
         renta = (Renta) intent.getSerializableExtra("renta");
+        Auto auto = Globals.getAuto(this, renta);
+        Cliente cliente = Globals.getCliente(this, renta);
+        foto = findViewById(R.id.img);
+        Glide.with(this).load("https://cinderellaride.000webhostapp.com/assets/img/autos/" + auto.getId_vehiculo() + ".png").asBitmap().into(foto);
+        modelo = findViewById(R.id.modelo);
+        modelo.setText(auto.getModelo());
+        placas = findViewById(R.id.placas);
+        placas.setText(auto.getPlacas());
+        usuario = findViewById(R.id.usuario);
+        usuario.setText(cliente.getNombres() + cliente.getApellido_paterno() + cliente.getApellido_materno());
     }
 
     public void openLocation(View view) {
@@ -45,7 +62,7 @@ public class RentaSelected extends AppCompatActivity {
     public void entregar(View view) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Globals.ip + "EntregarAuto.php", response -> {
             if (response.equals("MENSAJE")){
-                finish();
+                Globals.getClientes(this);
             } else {
                 Toast.makeText(getApplicationContext(), "" + response, Toast.LENGTH_SHORT).show();
             }

@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.usuariocliente.Driver.Home.RentaSelected;
 import com.example.usuariocliente.Models.Auto;
 import com.example.usuariocliente.Models.Cliente;
@@ -51,7 +52,7 @@ public class RentasAdapter extends RecyclerView.Adapter<RentasAdapter.RentaViewH
         Auto auto = Globals.getAuto(c, rentas.get(position));
         Cliente cliente = Globals.getCliente(c, rentas.get(position));
         //List<Cliente> cliente = Globals.getCliente(c, rentasList.get(position));
-
+        Glide.with(c).load("https://cinderellaride.000webhostapp.com/assets/img/autos/" + auto.getId_vehiculo() + ".png").asBitmap().into(holder.foto);
         holder.nombre.setText(auto.getModelo());
         holder.placas.setText(auto.getPlacas());
         holder.usuario.setText(cliente.getNombres());
@@ -68,8 +69,6 @@ public class RentasAdapter extends RecyclerView.Adapter<RentasAdapter.RentaViewH
         holder.entregar.setOnClickListener(v -> Toast.makeText(c, "ENTREGAR", Toast.LENGTH_SHORT).show());
 
     }
-
-
 
     @Override
     public int getItemCount() {
