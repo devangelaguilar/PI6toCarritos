@@ -56,8 +56,8 @@ public class RentasAdapter extends RecyclerView.Adapter<RentasAdapter.RentaViewH
         holder.nombre.setText(auto.getModelo());
         holder.placas.setText(auto.getPlacas());
         holder.usuario.setText(cliente.getNombres());
-
-        //poner foto
+        if (rentas.get(position).getStatus() == 2)
+            holder.entregar.setText("RECOLECTAR");
 
         holder.cv.setOnClickListener(v -> {
             Renta renta = rentas.get(position);

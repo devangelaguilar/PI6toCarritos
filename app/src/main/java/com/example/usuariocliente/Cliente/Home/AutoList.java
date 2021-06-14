@@ -75,4 +75,9 @@ public class AutoList extends AppCompatActivity {
     public void back(View view) {
         finish();
     }
+
+    public void misRentas(View view) {
+        Intent i = new Intent(this, MisRentas.class);
+        startActivity(i);
+    }
 }

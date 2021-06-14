@@ -13,7 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UsuarioCliente">
-        <activity android:name=".Cliente.Options.metodoPagoForm"></activity>
+        <activity android:name=".Driver.Home.Bitacora"></activity>
+        <activity android:name=".Cliente.Home.MiRentaSelected" />
+        <activity android:name=".Cliente.Home.MisRentas" />
+        <activity android:name=".Cliente.Options.metodoPagoForm" />
         <activity android:name=".Models.Maps.MapActivity" />
         <activity android:name=".Driver.Home.RentaSelected" />
         <activity android:name=".SplashScreen">

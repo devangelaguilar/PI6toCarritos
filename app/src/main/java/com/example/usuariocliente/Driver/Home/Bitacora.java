@@ -5,12 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
@@ -19,24 +18,21 @@ import com.bumptech.glide.Glide;
 import com.example.usuariocliente.Models.Auto;
 import com.example.usuariocliente.Models.Cliente;
 import com.example.usuariocliente.Models.Globals;
-import com.example.usuariocliente.Models.Maps.MapActivity;
 import com.example.usuariocliente.Models.Renta;
 import com.example.usuariocliente.R;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.usuariocliente.Models.Globals.id_usuario;
-
-public class RentaSelected extends AppCompatActivity {
+public class Bitacora extends AppCompatActivity {
     Renta renta;
-    TextView modelo, placas, usuario, punto_de_entrega;
+    TextView modelo, placas;
+    EditText km, notas;
     ImageView foto;
-    Button btn_entregar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_renta_selected);
+        setContentView(R.layout.activity_bitacora);
         Intent intent = getIntent();
         renta = (Renta) intent.getSerializableExtra("renta");
         Auto auto = Globals.getAuto(this, renta);
@@ -47,35 +43,13 @@ public class RentaSelected extends AppCompatActivity {
         modelo.setText(auto.getModelo());
         placas = findViewById(R.id.placas);
         placas.setText(auto.getPlacas());
-        usuario = findViewById(R.id.usuario);
-        usuario.setText(cliente.getNombres() + cliente.getApellido_paterno() + cliente.getApellido_materno());
-        btn_entregar = findViewById(R.id.btn_entregar);
-        punto_de_entrega = findViewById(R.id.punto_de_entrega);
-        if(renta.getStatus() == 2) {
-            btn_entregar.setText("RECOLECTAR");
-            punto_de_entrega.setText("Punto de recolección");
-        }
+
+        km = findViewById(R.id.km);
+        notas = findViewById(R.id.notas);
     }
 
-    public void openLocation(View view) {
-        Intent i = new Intent(this, MapActivity.class);
-        i.putExtra("Location", renta.getUbicacion());
-        startActivity(i);
-    }
-
-    public void back(View view) {
-        finish();
-    }
-
-    public void entregar(View view) {
-        if (renta.getStatus() == 2)
-            recolecta();
-        else
-            entrega();
-    }
-
-    private void entrega(){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Globals.ip + "EntregarAuto.php", response -> {
+    public void recolectar(View view) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Globals.ip + "RecolectarAuto.php", response -> {
             if (response.equals("MENSAJE")){
                 Globals.getClientes(this);
             } else {
@@ -90,16 +64,13 @@ public class RentaSelected extends AppCompatActivity {
                 // En este metodo se hace el envio de valores de la aplicacion al servidor
                 parametros.put("id_renta", String.valueOf(renta.getId_renta()));
                 parametros.put("id_vehiculo", String.valueOf(renta.getId_vehiculo()));
-
+                parametros.put("id_usuario", String.valueOf(renta.getId_usuario()));
+                parametros.put("km", km.getText().toString());
+                parametros.put("notas", notas.getText().toString());
                 return parametros;
             }
         };
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(stringRequest);
-    }
-    private void recolecta(){
-        Intent i = new Intent(this, Bitacora.class);
-        i.putExtra("renta", renta);
-        startActivity(i);
     }
 }

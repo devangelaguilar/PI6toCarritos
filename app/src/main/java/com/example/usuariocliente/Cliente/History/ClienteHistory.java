@@ -1,10 +1,12 @@
 package com.example.usuariocliente.Cliente.History;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,6 +20,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.usuariocliente.Adapter.AutosAdapter;
 import com.example.usuariocliente.Adapter.HistoryRentasAdapter;
 import com.example.usuariocliente.Adapter.HistoryRentasClienteAdapter;
+import com.example.usuariocliente.Cliente.Home.MisRentas;
 import com.example.usuariocliente.Models.Auto;
 import com.example.usuariocliente.Models.Globals;
 import com.example.usuariocliente.Models.Handler;
@@ -35,17 +38,24 @@ public class ClienteHistory extends Fragment {
     RecyclerView rvAutos;
     List<Renta> autosList = new ArrayList<>();
     Context context;
+    Button btn;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.history_cliente, container, false);
         context = getContext();
+        btn = view.findViewById(R.id.btn);
         rvAutos = view.findViewById(R.id.rvAutos);
         showList();
 
         rvAutos.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(context);
         rvAutos.setLayoutManager(llm);
+
+        btn.setOnClickListener(v -> {
+            Intent i = new Intent(context, MisRentas.class);
+            startActivity(i);
+        });
         return view;
     }
     private void showList() {

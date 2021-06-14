@@ -60,7 +60,7 @@ public class DriverHome extends Fragment {
                     JSONObject rentaObj = array.getJSONObject(i);
                     Renta a = new Renta(rentaObj.getInt("id_renta"), rentaObj.getInt("id_vehiculo"), rentaObj.getInt("id_usuario"),
                             rentaObj.getString("ubicacion"), rentaObj.getInt("status"), rentaObj.getString("fecha_inicio"), rentaObj.getString("fecha_fin"));
-                    if (a.getStatus() == 1)
+                    if (a.getStatus() == 1 || a.getStatus() == 2) // 1 = entregar al cliente. 2 = recoger del cliente
                         rentasList.add(a);
                 }
                 RentasAdapter adapter = new RentasAdapter(rentasList);
