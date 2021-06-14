@@ -4,69 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login">
-
-    <ImageView
-        android:id="@+id/LogoPosition"
-        android:layout_width="197dp"
-        android:layout_height="189dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/LoginLayout"
-        android:layout_marginTop="150dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp">
-
+    tools:context=".Login"
+    android:background="@drawable/background">
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/layout_edit_email">
-            <EditText
+            android:hint="Correo"
+            app:endIconMode="clear_text"
+            android:id="@+id/layout_edit_mail"
+            android:layout_marginTop="170dp"
+            android:padding="25dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_email"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="  Email"
-                android:textStyle="bold"
-                android:id="@+id/edit_email"/>
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:layout_below="@id/layout_edit_email"
+            android:hint="Contraseña"
+            android:layout_below="@id/layout_edit_mail"
+            app:passwordToggleEnabled="true"
             android:id="@+id/layout_edit_pass"
-            app:passwordToggleEnabled="true">
-            <EditText
+            app:passwordToggleTint="@color/black"
+            android:padding="25dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:hint="  Contraseña"
-                android:id="@+id/edit_pass"/>
+                android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <Button android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_below="@id/layout_edit_pass"
-            android:text="Log in"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:id="@+id/btn_login"
-            android:layout_marginTop="40dp"/>
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:background="@layout/boton_redondo"
+            android:textColor="#FFF"
+            android:text="Iniciar sesión"
+            android:id="@+id/btn_login"/>
 
-    </RelativeLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:layout_below="@id/LoginLayout"
-        android:textColor="@color/black"
+        android:textColor="@color/purple_200"
         android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
         android:text="o regístrate aquí"
         android:textAlignment="center"
         android:textSize="20dp"
