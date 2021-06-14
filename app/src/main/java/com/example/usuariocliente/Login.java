@@ -32,7 +32,6 @@ public class Login extends AppCompatActivity {
     Button login;
     EditText edit_email, edit_pass;
     TextView registro;
-    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +42,6 @@ public class Login extends AppCompatActivity {
         edit_pass = findViewById(R.id.edit_pass);
         login = findViewById(R.id.btn_login);
         registro = findViewById(R.id.toregistro);
-
-        preferences = this.getSharedPreferences("USERPREF", Context.MODE_PRIVATE);
 
 
         registro.setOnClickListener(v -> {

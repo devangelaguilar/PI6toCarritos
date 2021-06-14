@@ -17,6 +17,7 @@ tools:context=".Registro">
             android:textSize="20dp"
             android:textStyle="bold"
             android:layout_marginTop="15dp"
+            android:textColor="@color/black"
             android:layout_centerHorizontal="true" />
 
         <RelativeLayout
@@ -24,71 +25,84 @@ tools:context=".Registro">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-
+            app:endIconMode="clear_text"
             android:layout_marginRight="30dp"
             android:layout_marginTop="50dp">
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Nombre"
                 android:id="@+id/layout_edit_nombre">
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_nombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:hint=" Nombre" />
+
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                app:endIconMode="clear_text"
+                android:hint="Apellido paterno"
                 android:id="@+id/layout_edit_apellido_p"
                 android:layout_below="@id/layout_edit_nombre">
                 <EditText
                     android:id="@+id/edit_apellido_p"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
+
                     android:layout_marginTop="10dp"
-                    android:hint="Apellido paterno" />
+                     />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:endIconMode="clear_text"
                 android:id="@+id/layout_edit_apellido_m"
+                android:hint="Apellido materno"
                 android:layout_below="@id/layout_edit_apellido_p">
                 <EditText
                     android:id="@+id/edit_apellido_m"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
+
                     android:layout_below="@id/edit_apellido_p"
                     android:layout_marginTop="10dp"
-                    android:hint="Apellido materno" />
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/layout_edit_email"
+                android:hint="Email"
+                app:endIconMode="clear_text"
                 android:layout_below="@id/layout_edit_apellido_m">
                 <EditText
                     android:id="@+id/edit_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
+
                     android:layout_below="@id/edit_apellido_m"
                     android:layout_marginTop="10dp"
-                    android:hint="  Email" />
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/layout_edit_pass"
+                android:hint="Contraseña"
+                app:endIconMode="clear_text"
                 android:layout_below="@id/layout_edit_email"
                 app:passwordToggleEnabled="true">
                 <EditText
@@ -96,9 +110,9 @@ tools:context=".Registro">
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/edit_email"
-                    android:textStyle="bold"
+
                     android:layout_marginTop="10dp"
-                    android:hint="  Contraseña" />
+                    android:inputType="textPassword"/>
             </com.google.android.material.textfield.TextInputLayout>
 
         </RelativeLayout>
@@ -109,21 +123,23 @@ tools:context=".Registro">
             android:layout_height="wrap_content"
             android:layout_below="@+id/registro"
             android:layout_marginLeft="30dp"
-
+            app:endIconMode="clear_text"
             android:layout_marginRight="30dp"
             android:layout_marginTop="0dp">
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Licencia"
                 android:id="@+id/layout_edit_direccion">
                 <EditText
                     android:id="@+id/edit_licencia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
+
                     android:layout_marginTop="10dp"
-                    android:hint="Licencia" />
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
@@ -134,17 +150,20 @@ tools:context=".Registro">
                 android:layout_below="@+id/layout_edit_direccion">
 
                 <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:endIconMode="clear_text"
                     android:layout_marginTop="10dp"
+                    android:hint="Fecha de nacimiento"
                     android:id="@+id/layout_edit_municipio">
                     <EditText
                         android:id="@+id/edit_Fecha_nacimiento"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
+
                         android:layout_below="@id/edit_licencia"
-                        android:hint="Fecha de nacimiento"
+
                         android:layout_weight="1"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -158,16 +177,18 @@ tools:context=".Registro">
                 android:layout_below="@+id/uno">
 
                 <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    app:endIconMode="clear_text"
+                    android:hint="Teléfono"
                     android:id="@+id/layout_edit_tel">
                     <EditText
                         android:id="@+id/edit_tel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:hint="Teléfono"
+
                         android:layout_weight="1"
                         android:inputType="number"/>
                 </com.google.android.material.textfield.TextInputLayout>
@@ -176,15 +197,18 @@ tools:context=".Registro">
 
         </RelativeLayout>
 
-        <Button
-            android:id="@+id/btn_registro"
+        <Button android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_below="@id/registrodom"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:layout_marginTop="10dp"
-            android:text="Registrar" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:background="@layout/boton_redondo"
+            android:textColor="#FFF"
+            android:text="Registrar"
+            android:id="@+id/btn_registro"/>
     </RelativeLayout>
 
 </ScrollView>
