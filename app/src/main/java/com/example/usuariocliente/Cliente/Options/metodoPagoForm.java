@@ -51,7 +51,6 @@ public class metodoPagoForm extends AppCompatActivity {
         cargarSP();
         Cliente cliente = Globals.getCliente(id_usuario);
         id_user = String.valueOf(cliente.getId_Usuario());
-
         nametarjeta = findViewById(R.id.nametarjeta);
         numtarjeta = findViewById(R.id.numtarjeta);
         fechatarjeta = findViewById(R.id.fechatarjeta);
@@ -62,15 +61,22 @@ public class metodoPagoForm extends AppCompatActivity {
         btntarjeta.setOnClickListener(v -> {
 
             if(  !(nametarjeta.getText().toString().isEmpty())  && !(numtarjeta.getText().toString().isEmpty()) && !(fechatarjeta.getText().toString().isEmpty()) && !(cvvtarjeta.getText().toString().isEmpty())) {
+
+
+
+
             registroMetodoPago();
             finish();
+
             }
             else{
                 Toast.makeText(this, "Llene todos los campos", Toast.LENGTH_SHORT).show();
             }
         });
 
+
     }
+
 
     private void metodosExistentes(String id_usuario) {
 
@@ -94,17 +100,13 @@ public class metodoPagoForm extends AppCompatActivity {
                                 tarjetaAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tarjetaList);
                                 tarjetasexistentes.setAdapter(tarjetaAdapter);
 
-<<<<<<<
 
-=======
-
->>>>>>>
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(this, "Correo o contraseña incorrectos" + e, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Ingrese un Método de pago", Toast.LENGTH_SHORT).show();
                         }
                     },
-                    error -> Toast.makeText(this, "Contacte a Soporte " +error.toString(), Toast.LENGTH_SHORT).show())
+                    error -> Toast.makeText(this, "Contacte a Soporte", Toast.LENGTH_SHORT).show())
             {
                 @Override
                 protected Map<String, String> getParams() {

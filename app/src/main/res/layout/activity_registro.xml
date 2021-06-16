@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#bbfafa"
+
     android:layout_height="match_parent"
 tools:context=".Registro">
 
@@ -37,6 +39,8 @@ tools:context=".Registro">
                 android:id="@+id/layout_edit_nombre">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_nombre"
+                    android:background="#e3cbf5"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
@@ -54,6 +58,8 @@ tools:context=".Registro">
                 <EditText
                     android:id="@+id/edit_apellido_p"
                     android:layout_width="match_parent"
+                    android:background="#e3cbf5"
+
                     android:layout_height="wrap_content"
 
                     android:layout_marginTop="10dp"
@@ -72,6 +78,7 @@ tools:context=".Registro">
                     android:id="@+id/edit_apellido_m"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#e3cbf5"
 
                     android:layout_below="@id/edit_apellido_p"
                     android:layout_marginTop="10dp"
@@ -90,6 +97,7 @@ tools:context=".Registro">
                     android:id="@+id/edit_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#e3cbf5"
 
                     android:layout_below="@id/edit_apellido_m"
                     android:layout_marginTop="10dp"
@@ -110,6 +118,7 @@ tools:context=".Registro">
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/edit_email"
+                    android:background="#e3cbf5"
 
                     android:layout_marginTop="10dp"
                     android:inputType="textPassword"/>
@@ -137,6 +146,7 @@ tools:context=".Registro">
                     android:id="@+id/edit_licencia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#e3cbf5"
 
                     android:layout_marginTop="10dp"
                     />
@@ -161,6 +171,7 @@ tools:context=".Registro">
                         android:id="@+id/edit_Fecha_nacimiento"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#e3cbf5"
 
                         android:layout_below="@id/edit_licencia"
 
@@ -188,6 +199,7 @@ tools:context=".Registro">
                         android:id="@+id/edit_tel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#e3cbf5"
 
                         android:layout_weight="1"
                         android:inputType="number"/>
@@ -209,6 +221,13 @@ tools:context=".Registro">
             android:textColor="#FFF"
             android:text="Registrar"
             android:id="@+id/btn_registro"/>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="63dp"
+            android:layout_height="54dp"
+            android:layout_marginEnd="211dp"
+            app:srcCompat="@drawable/logo" />
     </RelativeLayout>
 
 </ScrollView>
