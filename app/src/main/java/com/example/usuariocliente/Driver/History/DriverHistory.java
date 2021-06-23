@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,6 +35,8 @@ public class DriverHistory extends Fragment {
     Context context;
     RecyclerView rvRentas;
     List<Renta> rentasList = new ArrayList<>();
+    TextView texto;
+    ImageView logo;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,6 +47,8 @@ public class DriverHistory extends Fragment {
         rvRentas.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(context);
         rvRentas.setLayoutManager(llm);
+        texto = view.findViewById(R.id.texto);
+        logo = view.findViewById(R.id.logo);
         return view;
     }
     private void showList() {
@@ -57,6 +63,10 @@ public class DriverHistory extends Fragment {
                             rentaObj.getString("ubicacion"), rentaObj.getInt("status"), rentaObj.getString("fecha_inicio"), rentaObj.getString("fecha_fin"));
                     if (a.getStatus() == 0)
                         rentasList.add(a);
+                }
+                if (rentasList.size() == 0){
+                    logo.setVisibility(View.VISIBLE);
+                    texto.setVisibility(View.VISIBLE);
                 }
                 //Toast.makeText(context, rentasList.size() + " ", Toast.LENGTH_LONG).show();
                 HistoryRentasAdapter adapter = new HistoryRentasAdapter(rentasList);

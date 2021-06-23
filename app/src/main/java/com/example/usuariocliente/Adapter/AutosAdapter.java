@@ -57,7 +57,7 @@ public class AutosAdapter extends RecyclerView.Adapter<AutosAdapter.AutoViewHold
         autosList = new ArrayList<>();
         holder.cv.setOnClickListener(v -> {
             Auto auto = autosList.get(position);
-            Toast.makeText(c, auto.getModelo(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(c, auto.getModelo(), Toast.LENGTH_SHORT).show();
             Intent i = new Intent(c, AutoSelected.class);
             i.putExtra("auto", auto);
             c.startActivity(i);

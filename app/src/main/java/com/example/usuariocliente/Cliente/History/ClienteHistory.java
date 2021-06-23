@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,6 +41,8 @@ public class ClienteHistory extends Fragment {
     List<Renta> autosList = new ArrayList<>();
     Context context;
     Button btn;
+    TextView texto;
+    ImageView logo;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -51,7 +55,8 @@ public class ClienteHistory extends Fragment {
         rvAutos.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(context);
         rvAutos.setLayoutManager(llm);
-
+        texto = view.findViewById(R.id.texto);
+        logo = view.findViewById(R.id.logo);
         btn.setOnClickListener(v -> {
             Intent i = new Intent(context, MisRentas.class);
             startActivity(i);
@@ -69,6 +74,10 @@ public class ClienteHistory extends Fragment {
                             rentaObj.getString("ubicacion"), rentaObj.getInt("status"), rentaObj.getString("fecha_inicio"), rentaObj.getString("fecha_fin"));
                     if (a.getId_usuario() == Globals.id_usuario && a.getStatus() == 0)
                         autosList.add(a);
+                }
+                if (autosList.size() == 0){
+                    logo.setVisibility(View.VISIBLE);
+                    texto.setVisibility(View.VISIBLE);
                 }
                 //Toast.makeText(context, autosList.size() + " ", Toast.LENGTH_LONG).show();
                 if (autosList.size() > 0) {

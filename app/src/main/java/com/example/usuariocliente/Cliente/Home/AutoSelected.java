@@ -84,6 +84,7 @@ public class AutoSelected extends AppCompatActivity {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Globals.ip + "RentaAuto.php", response -> {
             if (response.equals("MENSAJE")){
+                Toast.makeText(getApplicationContext(), "Por favor, espere a que el vehículo sea entregado en su ubicación", Toast.LENGTH_SHORT).show();
                 finish();
             } else {
                 Toast.makeText(getApplicationContext(), "" + response, Toast.LENGTH_SHORT).show();

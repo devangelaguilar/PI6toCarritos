@@ -90,6 +90,7 @@ public class RentaSelected extends AppCompatActivity {
                 // En este metodo se hace el envio de valores de la aplicacion al servidor
                 parametros.put("id_renta", String.valueOf(renta.getId_renta()));
                 parametros.put("id_vehiculo", String.valueOf(renta.getId_vehiculo()));
+                parametros.put("status", String.valueOf(renta.getStatus()));
 
                 return parametros;
             }

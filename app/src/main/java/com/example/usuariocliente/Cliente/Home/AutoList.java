@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -29,7 +30,8 @@ import java.util.List;
 public class AutoList extends AppCompatActivity {
     RecyclerView rvAutos;
     List<Auto> autosList = new ArrayList<>();
-
+    TextView texto;
+    ImageView logo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +43,8 @@ public class AutoList extends AppCompatActivity {
         rvAutos.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
         rvAutos.setLayoutManager(llm);
-
+        texto = findViewById(R.id.texto);
+        logo = findViewById(R.id.logo);
 
     }
 
@@ -58,6 +61,10 @@ public class AutoList extends AppCompatActivity {
                         autosList.add(a);
                     }
                     //Toast.makeText(getApplicationContext(), a + " " + response, Toast.LENGTH_LONG).show();
+                }
+                if (autosList.size() == 0){
+                    logo.setVisibility(View.VISIBLE);
+                    texto.setVisibility(View.VISIBLE);
                 }
                 AutosAdapter adapter = new AutosAdapter(autosList);
                 rvAutos.setAdapter(adapter);

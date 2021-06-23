@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -35,6 +37,8 @@ public class DriverHome extends Fragment {
     Intent i;
     RecyclerView rvRentas;
     List<Renta> rentasList = new ArrayList<>();
+    TextView texto;
+    ImageView logo;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,6 +50,9 @@ public class DriverHome extends Fragment {
         rvRentas.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(context);
         rvRentas.setLayoutManager(llm);
+
+        texto = view.findViewById(R.id.texto);
+        logo = view.findViewById(R.id.logo);
 
         return view;
     }
@@ -60,9 +67,14 @@ public class DriverHome extends Fragment {
                     JSONObject rentaObj = array.getJSONObject(i);
                     Renta a = new Renta(rentaObj.getInt("id_renta"), rentaObj.getInt("id_vehiculo"), rentaObj.getInt("id_usuario"),
                             rentaObj.getString("ubicacion"), rentaObj.getInt("status"), rentaObj.getString("fecha_inicio"), rentaObj.getString("fecha_fin"));
-                    if (a.getStatus() == 1 || a.getStatus() == 2) // 1 = entregar al cliente. 2 = recoger del cliente
+                    if (a.getStatus() == 3 || a.getStatus() == 2) // 3 = entregar al cliente. 2 = recoger del cliente
                         rentasList.add(a);
                 }
+                if (rentasList.size() == 0){
+                    logo.setVisibility(View.VISIBLE);
+                    texto.setVisibility(View.VISIBLE);
+                }
+
                 RentasAdapter adapter = new RentasAdapter(rentasList);
                 rvRentas.setAdapter(adapter);
 

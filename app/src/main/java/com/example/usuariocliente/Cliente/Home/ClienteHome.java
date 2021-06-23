@@ -44,9 +44,6 @@ public class ClienteHome extends Fragment {
         context = getContext();
 
         Back = view.findViewById(R.id.backarrow);
-        Historial = view.findViewById(R.id.historialicon);
-        Usuario = view.findViewById(R.id.Usuarioicon);
-        CerrarSesion = view.findViewById(R.id.cerrarsesionicon);
         buscar = view.findViewById(R.id.btn_buscar);
         ubicacion = view.findViewById(R.id.ubicacion);
         fechas = view.findViewById(R.id.fechas);

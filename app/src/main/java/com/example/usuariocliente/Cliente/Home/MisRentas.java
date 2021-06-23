@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -27,6 +29,8 @@ import java.util.List;
 public class MisRentas extends AppCompatActivity {
     RecyclerView rvRentas;
     List<Renta> autosList = new ArrayList<>();
+    TextView texto;
+    ImageView logo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +41,8 @@ public class MisRentas extends AppCompatActivity {
         rvRentas.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rvRentas.setLayoutManager(llm);
+        texto = findViewById(R.id.texto);
+        logo = findViewById(R.id.logo);
     }
 
     public void back(View view) { finish(); }
@@ -52,6 +58,10 @@ public class MisRentas extends AppCompatActivity {
                             rentaObj.getString("ubicacion"), rentaObj.getInt("status"), rentaObj.getString("fecha_inicio"), rentaObj.getString("fecha_fin"));
                     if (a.getId_usuario() == Globals.id_usuario && a.getStatus() == 1)
                         autosList.add(a);
+                }
+                if (autosList.size() == 0){
+                    logo.setVisibility(View.VISIBLE);
+                    texto.setVisibility(View.VISIBLE);
                 }
                 //Toast.makeText(context, autosList.size() + " ", Toast.LENGTH_LONG).show();
                 if (autosList.size() > 0) {
