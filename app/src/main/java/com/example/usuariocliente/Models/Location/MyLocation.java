@@ -19,14 +19,11 @@ public class MyLocation extends BroadcastReceiver {
             final String action = intent.getAction();
             if(ACTION_PROCESS_UPDATE.equals(action)){
                 LocationResult result = LocationResult.extractResult(intent);
-                if(result != null){
-                    Location location = result.getLastLocation();
-                    try{
-                        ClienteMenu.getInstance().updatecurrentLocation(location);
-                        //Toast.makeText(context, ""+Globals.getCurrentLocation().getLatitude()+" "+Globals.getCurrentLocation().getLongitude(), Toast.LENGTH_LONG).show();
-                    } catch (Exception e){
-                        Toast.makeText(context, ""+e, Toast.LENGTH_LONG).show();
-                    }
+                Location location = result.getLastLocation();
+                try{
+                    ClienteMenu.getInstance().updatecurrentLocation(location);
+                } catch (Exception e){
+                    Toast.makeText(context, ""+e, Toast.LENGTH_LONG).show();
                 }
             }
         }
