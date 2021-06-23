@@ -4,7 +4,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context=".Cliente.Options.metodoPagoForm">
+tools:context=".Cliente.Options.metodoPagoForm"
+    android:background="#e3cbf5">
 
     <TextView
         android:layout_width="wrap_content"
@@ -13,8 +14,15 @@ tools:context=".Cliente.Options.metodoPagoForm">
         android:textSize="20dp"
         android:textStyle="bold"
         android:layout_marginTop="15dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        />
 
+
+    <!---
+    // e3cbf5//
+    //f7edff//
+   // bbfafa//
+   -->
     <RelativeLayout
         android:id="@+id/registro"
         android:layout_width="wrap_content"
@@ -22,7 +30,7 @@ tools:context=".Cliente.Options.metodoPagoForm">
         android:layout_marginLeft="30dp"
 
         android:layout_marginRight="30dp"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="75dp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -30,10 +38,12 @@ tools:context=".Cliente.Options.metodoPagoForm">
             android:id="@+id/layout_edit_nombre">
             <EditText
                 android:id="@+id/nametarjeta"
+                android:background="#bbfafa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:hint=" Nombre del tarjetahabiente" />
+                android:hint=" Tarjetahabiente" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -49,6 +59,9 @@ tools:context=".Cliente.Options.metodoPagoForm">
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="Número de tarjeta"
+                android:background="#bbfafa"
+                android:maxLength="16"
+                android:inputType="number"
                 android:textStyle="bold" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,7 +77,10 @@ tools:context=".Cliente.Options.metodoPagoForm">
                 android:textStyle="bold"
                 android:layout_below="@id/edit_apellido_p"
                 android:layout_marginTop="10dp"
-                android:hint="Fecha de vencimiento" />
+                android:maxLength="4"
+                android:background="#bbfafa"
+                android:inputType="number"
+                android:hint="Fecha de vencimiento  MM/YY" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -79,6 +95,9 @@ tools:context=".Cliente.Options.metodoPagoForm">
                 android:textStyle="bold"
                 android:layout_below="@id/edit_apellido_m"
                 android:layout_marginTop="10dp"
+                android:maxLength="3"
+                android:background="#bbfafa"
+                android:inputType="number"
                 android:hint="  CVV" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,12 +124,37 @@ tools:context=".Cliente.Options.metodoPagoForm">
         android:layout_below="@id/registrodom"
         android:textStyle="bold"
         android:textColor="@color/white"
-        android:layout_marginTop="10dp"
-        android:text="Añadir método de pago" />
+        android:layout_marginTop="19dp"
+        android:text="Añadir método de pago"
+        />
+
+    <TextView
+        android:id="@+id/ListaTarjetasMarquer"
+        android:layout_width="286dp"
+        android:layout_height="43dp"
+        android:layout_below="@id/btntarjeta"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="25dp"
+        android:text="Lista de tarjetas agregadas"
+        android:textSize="20dp"
+        android:textStyle="bold"></TextView>
 
     <ListView
         android:id="@+id/ListaMetodoPagos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btntarjeta" />
+        android:layout_below="@id/ListaTarjetasMarquer"
+        android:layout_marginTop="25dp"
+        android:background="#bbfafa"
+        />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="90dp"
+        android:layout_height="74dp"
+        android:layout_marginEnd="211dp"
+        app:srcCompat="@drawable/logo"
+        />
+
+
 </RelativeLayout>

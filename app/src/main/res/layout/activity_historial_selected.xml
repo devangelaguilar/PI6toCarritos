@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Cliente.History.HistorySelected">
+    tools:context=".Cliente.History.HistorySelected"
+    android:background="#e3cbf5"
+    >
 
 
     <ImageView

@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Cliente.Home.MiRentaSelected">
+    tools:context=".Cliente.Home.MiRentaSelected"
+    android:background="#e3cbf5"
+    >
     <ImageView
         android:id="@+id/backarrow"
         android:layout_width="40dp"
@@ -80,5 +82,16 @@
         android:text="Entregar"
         android:onClick="entregar"
         android:id="@+id/btn_entregar"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="134dp"
+        android:layout_height="54dp"
+        android:layout_above="@+id/img"
+        android:layout_alignTop="@+id/punto_de_entrega"
+        android:layout_marginTop="-343dp"
+        android:layout_marginEnd="211dp"
+        android:layout_marginBottom="4dp"
+        app:srcCompat="@drawable/logo" />
 
 </RelativeLayout>
