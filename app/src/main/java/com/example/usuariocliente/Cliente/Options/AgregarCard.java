@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,14 +36,11 @@ import java.util.Map;
 
 import static com.example.usuariocliente.Models.Globals.id_usuario;
 
-public class metodoPagoForm extends AppCompatActivity {
+public class AgregarCard extends AppCompatActivity {
 
     Button btntarjeta;
     EditText nametarjeta, numtarjeta, fechatarjeta, cvvtarjeta;
     String id_user;
-    ListView tarjetasexistentes;
-    ArrayList<String> tarjetaList = new ArrayList<>();
-    ArrayAdapter<String> tarjetaAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,19 +53,12 @@ public class metodoPagoForm extends AppCompatActivity {
         numtarjeta = findViewById(R.id.numtarjeta);
         fechatarjeta = findViewById(R.id.fechatarjeta);
         cvvtarjeta = findViewById(R.id.cvvtarjeta);
-        tarjetasexistentes = findViewById(R.id.ListaMetodoPagos);
         btntarjeta = findViewById(R.id.btntarjeta);
-        metodosExistentes(id_user);
+        //metodosExistentes(id_user);
         btntarjeta.setOnClickListener(v -> {
 
             if(  !(nametarjeta.getText().toString().isEmpty())  && !(numtarjeta.getText().toString().isEmpty()) && !(fechatarjeta.getText().toString().isEmpty()) && !(cvvtarjeta.getText().toString().isEmpty())) {
-
-
-
-
             registroMetodoPago();
-            finish();
-
             }
             else{
                 Toast.makeText(this, "Llene todos los campos", Toast.LENGTH_SHORT).show();
@@ -78,53 +69,16 @@ public class metodoPagoForm extends AppCompatActivity {
     }
 
 
-    private void metodosExistentes(String id_usuario) {
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, Globals.ip + "METODOSPAGOLISTAFILLER.php",
-                    response -> {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-
-                            JSONArray jsonArray = jsonObject.getJSONArray("numeracion_tarjeta");
-
-
-
-                                for (int i = 0; i < jsonArray.length(); i++) {
-                                    JSONObject object = jsonArray.getJSONObject(i);
-                                    String numerotarjeta = object.getString("numeracion_tarjeta");
-                                    tarjetaList.add(numerotarjeta);
-                                    tarjetaAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tarjetaList);
-                                    tarjetasexistentes.setAdapter(tarjetaAdapter);
-
-                                }
-                                tarjetaAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tarjetaList);
-                                tarjetasexistentes.setAdapter(tarjetaAdapter);
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(this, "Ingrese un Método de pago", Toast.LENGTH_SHORT).show();
-                        }
-                    },
-                    error -> Toast.makeText(this, "Contacte a Soporte", Toast.LENGTH_SHORT).show())
-            {
-                @Override
-                protected Map<String, String> getParams() {
-                    Map<String, String> params = new HashMap<>();
-                    params.put("id_usuario", id_usuario);
-                    return params;
-                }
-            };
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
-            requestQueue.add(stringRequest);
-    }
 
     private void registroMetodoPago() {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Globals.ip + "metodoPago.php", response -> {
             if (response.equals("MENSAJE")){
                 Toast.makeText(this, "Método de pago agregado con éxito", Toast.LENGTH_SHORT).show();
-
+                Intent i = new Intent(this, ListaCards.class);
+                startActivity(i);
+                finish();
             } else {
                 Toast.makeText(getApplicationContext(), "" + response, Toast.LENGTH_SHORT).show();
             }
@@ -149,5 +103,11 @@ public class metodoPagoForm extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
 
         id_usuario = preferences.getInt("id_unico", 0);
+    }
+
+    public void back(View view) {
+        Intent i = new Intent(this, ListaCards.class);
+        startActivity(i);
+        finish();
     }
 }

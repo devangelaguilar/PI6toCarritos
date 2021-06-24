@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.usuariocliente.Cliente.Options.metodoPagoForm;
 import com.example.usuariocliente.Login;
 import com.example.usuariocliente.Models.Cliente;
 import com.example.usuariocliente.Models.Globals;

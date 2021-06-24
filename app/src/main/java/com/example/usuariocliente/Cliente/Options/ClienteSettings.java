@@ -37,8 +37,6 @@ import java.util.Map;
 
 public class ClienteSettings extends Fragment {
     Button logout, metodoPago;
-    String idUsuario;
-    String URL_SERVIDOR= Globals.ip + "GetUserInfo.php";
     TextView Nombre, Apellido, Correo, Telefono, Foto, Direccion, FechaNacimiento, MetodoPago, Licencia;
     private final int id_usuario = Globals.id_usuario;
 
@@ -67,7 +65,7 @@ public class ClienteSettings extends Fragment {
         });
         metodoPago = view.findViewById(R.id.metodopagobutton);
         metodoPago.setOnClickListener(v -> {
-            Intent i = new Intent(getContext(), metodoPagoForm.class);
+            Intent i = new Intent(getContext(), ListaCards.class);
             startActivity(i);
         });
         return view;

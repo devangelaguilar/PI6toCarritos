@@ -4,7 +4,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context=".Cliente.Options.metodoPagoForm"
+tools:context=".Cliente.Options.AgregarCard"
     android:background="#e3cbf5">
 
     <TextView
@@ -17,7 +17,14 @@ tools:context=".Cliente.Options.metodoPagoForm"
         android:layout_centerHorizontal="true"
         />
 
-
+    <ImageView
+        android:id="@+id/backarrow"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/baseline_arrow_back_18"
+        android:onClick="back"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"/>
     <!---
     // e3cbf5//
     //f7edff//
@@ -109,12 +116,8 @@ tools:context=".Cliente.Options.metodoPagoForm"
         android:layout_height="wrap_content"
         android:layout_below="@+id/registro"
         android:layout_marginLeft="30dp"
-
         android:layout_marginRight="30dp"
         android:layout_marginTop="0dp">
-
-
-
     </RelativeLayout>
 
     <Button
@@ -124,37 +127,7 @@ tools:context=".Cliente.Options.metodoPagoForm"
         android:layout_below="@id/registrodom"
         android:textStyle="bold"
         android:textColor="@color/white"
-        android:layout_marginTop="19dp"
-        android:text="Añadir método de pago"
-        />
-
-    <TextView
-        android:id="@+id/ListaTarjetasMarquer"
-        android:layout_width="286dp"
-        android:layout_height="43dp"
-        android:layout_below="@id/btntarjeta"
-        android:layout_marginLeft="75dp"
-        android:layout_marginTop="25dp"
-        android:text="Lista de tarjetas agregadas"
-        android:textSize="20dp"
-        android:textStyle="bold"></TextView>
-
-    <ListView
-        android:id="@+id/ListaMetodoPagos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ListaTarjetasMarquer"
-        android:layout_marginTop="25dp"
-        android:background="#bbfafa"
-        />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="90dp"
-        android:layout_height="74dp"
-        android:layout_marginEnd="211dp"
-        app:srcCompat="@drawable/logo"
-        />
-
-
+        android:background="@layout/boton_redondo"
+        android:layout_margin="20dp"
+        android:text="Añadir método de pago" />
 </RelativeLayout>

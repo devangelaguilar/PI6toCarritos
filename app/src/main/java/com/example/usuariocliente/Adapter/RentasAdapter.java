@@ -27,8 +27,6 @@ import java.util.List;
 
 public class RentasAdapter extends RecyclerView.Adapter<RentasAdapter.RentaViewHolder> {
     List<Renta> rentas;
-
-    List<Renta> rentasList;
     ArrayList<Renta> arrayList;
     Context c;
 
