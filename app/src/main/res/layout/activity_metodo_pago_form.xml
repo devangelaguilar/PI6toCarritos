@@ -87,7 +87,7 @@ tools:context=".Cliente.Options.AgregarCard"
 
             <Spinner
                 android:id="@+id/mescard"
-                android:layout_width="45dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="Fecha de vencimiento  MM/YY"
@@ -110,10 +110,10 @@ tools:context=".Cliente.Options.AgregarCard"
 
             <Spinner
                 android:id="@+id/aniocard"
-                android:layout_width="45dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:layout_marginLeft="60dp"
+                android:layout_marginLeft="100dp"
 
                 ></Spinner>
 
@@ -127,7 +127,7 @@ tools:context=".Cliente.Options.AgregarCard"
             android:layout_below="@id/layout_edit_apellido_m">
             <EditText
                 android:id="@+id/cvvtarjeta"
-                android:layout_width="match_parent"
+                android:layout_width="75dp"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:layout_below="@id/edit_apellido_m"
