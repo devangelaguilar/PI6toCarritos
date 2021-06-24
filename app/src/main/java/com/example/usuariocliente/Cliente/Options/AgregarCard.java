@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -39,8 +40,9 @@ import static com.example.usuariocliente.Models.Globals.id_usuario;
 public class AgregarCard extends AppCompatActivity {
 
     Button btntarjeta;
-    EditText nametarjeta, numtarjeta, fechatarjeta, cvvtarjeta;
-    String id_user;
+    EditText nametarjeta, numtarjeta,cvvtarjeta;
+    String id_user, fechatarjeta;
+    Spinner  mestarjeta,aniotarjeta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,13 +53,25 @@ public class AgregarCard extends AppCompatActivity {
         id_user = String.valueOf(cliente.getId_Usuario());
         nametarjeta = findViewById(R.id.nametarjeta);
         numtarjeta = findViewById(R.id.numtarjeta);
-        fechatarjeta = findViewById(R.id.fechatarjeta);
+        mestarjeta = findViewById(R.id.mescard);
+        aniotarjeta = findViewById(R.id.aniocard);
         cvvtarjeta = findViewById(R.id.cvvtarjeta);
         btntarjeta = findViewById(R.id.btntarjeta);
+        String[] meses = {"01", "02", "03", "04", "05","06", "07", "08", "09", "10", "11", "12"};
+        String[] anios = {"2021", "2022", "2023", "2024", "2025","2026","2028","2029"};
         //metodosExistentes(id_user);
+
+        ArrayAdapter<String> mesesarray= new ArrayAdapter<String>(AgregarCard.this,android.R.layout.simple_spinner_item, meses);
+        mesesarray.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mestarjeta.setAdapter(mesesarray);
+
+        ArrayAdapter<String> aniosarray= new ArrayAdapter<String>(AgregarCard.this,android.R.layout.simple_spinner_item, anios);
+        aniosarray.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        aniotarjeta.setAdapter(aniosarray);
+
         btntarjeta.setOnClickListener(v -> {
 
-            if(  !(nametarjeta.getText().toString().isEmpty())  && !(numtarjeta.getText().toString().isEmpty()) && !(fechatarjeta.getText().toString().isEmpty()) && !(cvvtarjeta.getText().toString().isEmpty())) {
+            if(  !(nametarjeta.getText().toString().isEmpty())  && !(numtarjeta.getText().toString().isEmpty())  && !(cvvtarjeta.getText().toString().isEmpty())) {
             registroMetodoPago();
             }
             else{
@@ -87,11 +101,12 @@ public class AgregarCard extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> parametros = new HashMap<>();
-
+                fechatarjeta = ""+mestarjeta.getSelectedItem().toString()+""+aniotarjeta.getSelectedItem().toString();
+                Toast.makeText(AgregarCard.this, ""+fechatarjeta, Toast.LENGTH_SHORT).show();
                 // En este metodo se hace el envio de valores de la aplicacion al servidor
                 parametros.put("id_usuario", String.valueOf(id_usuario));
                 parametros.put("numeracion_tarjeta", numtarjeta.getText().toString());
-                parametros.put("fecha_vencimiento", fechatarjeta.getText().toString());
+                parametros.put("fecha_vencimiento", fechatarjeta);
                 return parametros;
             }
         };
