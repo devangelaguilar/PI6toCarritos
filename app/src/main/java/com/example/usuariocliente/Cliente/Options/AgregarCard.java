@@ -58,7 +58,7 @@ public class AgregarCard extends AppCompatActivity {
         cvvtarjeta = findViewById(R.id.cvvtarjeta);
         btntarjeta = findViewById(R.id.btntarjeta);
         String[] meses = {"01", "02", "03", "04", "05","06", "07", "08", "09", "10", "11", "12"};
-        String[] anios = {"2021", "2022", "2023", "2024", "2025","2026","2028","2029"};
+        String[] anios = {"21", "22", "23", "24", "25","26","28","29"};
         //metodosExistentes(id_user);
 
         ArrayAdapter<String> mesesarray= new ArrayAdapter<String>(AgregarCard.this,android.R.layout.simple_spinner_item, meses);
@@ -82,9 +82,6 @@ public class AgregarCard extends AppCompatActivity {
 
     }
 
-
-
-
     private void registroMetodoPago() {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Globals.ip + "metodoPago.php", response -> {
@@ -101,8 +98,8 @@ public class AgregarCard extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> parametros = new HashMap<>();
-                fechatarjeta = ""+mestarjeta.getSelectedItem().toString()+""+aniotarjeta.getSelectedItem().toString();
-                Toast.makeText(AgregarCard.this, ""+fechatarjeta, Toast.LENGTH_SHORT).show();
+                fechatarjeta = ""+mestarjeta.getSelectedItem().toString()+"/"+aniotarjeta.getSelectedItem().toString();
+                ///Toast.makeText(AgregarCard.this, ""+fechatarjeta, Toast.LENGTH_SHORT).show();
                 // En este metodo se hace el envio de valores de la aplicacion al servidor
                 parametros.put("id_usuario", String.valueOf(id_usuario));
                 parametros.put("numeracion_tarjeta", numtarjeta.getText().toString());

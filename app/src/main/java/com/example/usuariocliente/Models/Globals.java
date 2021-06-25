@@ -298,4 +298,8 @@ public class Globals {
         }
         return null;
     }
+
+    public static void deleteCard(int id_usuario){
+        //dicks
+    }
 }
