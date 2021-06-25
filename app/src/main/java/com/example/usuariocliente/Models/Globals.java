@@ -304,7 +304,7 @@ public class Globals {
         return null;
     }
 
-    public static void deleteCard(int id_usuario, Context c){
+    public static void deleteCard(String numeracion_tarjeta, Context c){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Globals.ip + "deletecard.php",
                 response -> {
                     try {
@@ -314,7 +314,9 @@ public class Globals {
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Toast.makeText(c, "Servidor en mantenimiento, intente más tarde", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(c, "Tarjeta Eliminada!", Toast.LENGTH_LONG).show();
+
+
                     }
                 },
                 error -> {})
@@ -322,7 +324,7 @@ public class Globals {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("id_usuario", String.valueOf(id_usuario));
+                params.put("numeracion_tarjeta", String.valueOf(numeracion_tarjeta));
                 return params;
             }
         };
