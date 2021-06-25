@@ -46,7 +46,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
         holder.delete.setOnClickListener(v -> {
             //eliminar tarjeta de la db
-            Globals.deleteCard(id_usuario);
+            c = v.getContext();
+            Globals.deleteCard(id_usuario,c);
         });
         holder.n_tarjeta.setText("****    ****    ****    " + cards.get(position).getNumero_tarjeta().substring(cards.get(position).getNumero_tarjeta().length() - 4));
         holder.fecha_vencimiento.setText(cards.get(position).getFecha_vencimiento());

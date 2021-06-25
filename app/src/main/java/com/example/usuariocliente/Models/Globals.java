@@ -10,11 +10,14 @@ import android.util.SparseArray;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.example.usuariocliente.Cliente.ClienteMenu;
+import com.example.usuariocliente.Cliente.Options.ListaCards;
 import com.example.usuariocliente.Driver.DriverMenu;
 import com.example.usuariocliente.Login;
 import com.example.usuariocliente.SplashScreen;
@@ -28,7 +31,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TimeZone;
 
 public class Globals {
@@ -299,7 +304,31 @@ public class Globals {
         return null;
     }
 
-    public static void deleteCard(int id_usuario){
-        //dicks
+    public static void deleteCard(int id_usuario, Context c){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Globals.ip + "deletecard.php",
+                response -> {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        Toast.makeText(c, "Tarjeta Eliminada", Toast.LENGTH_SHORT).show();
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(c, "Servidor en mantenimiento, intente más tarde", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                error -> {})
+        {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("id_usuario", String.valueOf(id_usuario));
+                return params;
+            }
+        };
+
+        Handler.getInstance(c).addToRequestQueue(stringRequest);
+
     }
+
 }
