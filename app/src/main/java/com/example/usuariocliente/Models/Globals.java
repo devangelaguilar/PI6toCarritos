@@ -9,6 +9,7 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
@@ -17,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.example.usuariocliente.Cliente.ClienteMenu;
+import com.example.usuariocliente.Cliente.Home.SelectCard;
 import com.example.usuariocliente.Cliente.Options.ListaCards;
 import com.example.usuariocliente.Driver.DriverMenu;
 import com.example.usuariocliente.Login;
@@ -309,11 +311,17 @@ public class Globals {
                 response -> {
                     try {
                         JSONObject jsonObject = new JSONObject(response);
+                        Intent i = new Intent(c, ListaCards.class);
+                        c.startActivity(i);
+                        ((ListaCards)c).finish();
                         Toast.makeText(c, "Tarjeta Eliminada", Toast.LENGTH_SHORT).show();
 
 
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        Intent i = new Intent(c, ListaCards.class);
+                        c.startActivity(i);
+                        ((ListaCards)c).finish();
                         Toast.makeText(c, "Tarjeta Eliminada!", Toast.LENGTH_LONG).show();
 
 
@@ -331,6 +339,37 @@ public class Globals {
 
         Handler.getInstance(c).addToRequestQueue(stringRequest);
 
+    }
+
+    public static void rentarAuto(Context c, String ubicacion, String fecha_inicio, String fecha_fin, Auto autodata) {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Globals.ip + "RentaAuto.php", response -> {
+            if (response.equals("MENSAJE")){
+                Toast.makeText(c, "Por favor, espere a que el vehículo sea entregado en su ubicación", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(c, ClienteMenu.class);
+                c.startActivity(i);
+                ((SelectCard)c).finish();
+            } else {
+                Toast.makeText(c, "" + response, Toast.LENGTH_SHORT).show();
+            }
+            //Toast.makeText(c, "" + response, Toast.LENGTH_SHORT).show();
+        }, error -> Toast.makeText(c, error.getMessage(), Toast.LENGTH_SHORT).show()){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<>();
+
+                // En este metodo se hace el envio de valores de la aplicacion al servidor
+                parametros.put("id_vehiculo", String.valueOf(autodata.getId_vehiculo()));
+                parametros.put("id_usuario", String.valueOf(id_usuario));
+                parametros.put("ubicacion", ubicacion);
+                parametros.put("fecha_inicio", fecha_inicio);
+                parametros.put("fecha_fin", fecha_fin);
+
+                return parametros;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(c);
+        requestQueue.add(stringRequest);
     }
 
 }

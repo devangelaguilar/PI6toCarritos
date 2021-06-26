@@ -1,4 +1,4 @@
-package com.example.usuariocliente.Cliente.Options;
+package com.example.usuariocliente.Cliente.Home;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +16,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.usuariocliente.Adapter.CardAdapter;
+import com.example.usuariocliente.Models.Auto;
 import com.example.usuariocliente.Models.Card;
 import com.example.usuariocliente.Models.Globals;
 import com.example.usuariocliente.R;
@@ -28,15 +29,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ListaCards extends AppCompatActivity {
+public class SelectCard extends AppCompatActivity {
     ArrayList<Card> tarjetaList = new ArrayList<>();
     RecyclerView rvCards;
     ImageView logo;
     TextView texto;
+    public static String ubicacion, fecha_inicio, fecha_fin;
+    public static Auto autodata;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_cards);
+        setContentView(R.layout.activity_select_card);
+
+        Intent i = getIntent();
+        ubicacion = i.getStringExtra("ubicacion");
+        fecha_inicio = i.getStringExtra("fecha_inicio");
+        fecha_fin = i.getStringExtra("fecha_fin");
+        autodata = (Auto) i.getSerializableExtra("autodata");
+
         rvCards = findViewById(R.id.rvCards);
         rvCards.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
@@ -64,12 +74,10 @@ public class ListaCards extends AppCompatActivity {
                             logo.setVisibility(View.VISIBLE);
                             texto.setVisibility(View.VISIBLE);
                         }
-                        CardAdapter adapter = new CardAdapter(tarjetaList, false);
+                        CardAdapter adapter = new CardAdapter(tarjetaList, true, ubicacion, fecha_inicio, fecha_fin, autodata);
                         rvCards.setAdapter(adapter);
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        logo.setVisibility(View.VISIBLE);
-                        texto.setVisibility(View.VISIBLE);
                         Toast.makeText(this, "Ingrese un Método de pago", Toast.LENGTH_SHORT).show();
                     }
                 },
@@ -85,13 +93,6 @@ public class ListaCards extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-
-    public void agregarCard(View view) {
-        Intent intent = new Intent(this, AgregarCard.class);
-        startActivity(intent);
-        finish();
-    }
-
     public void back(View view) {
         finish();
     }

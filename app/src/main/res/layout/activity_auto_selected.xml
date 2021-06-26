@@ -1,169 +1,263 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/car_info"
     tools:context=".Cliente.Home.AutoSelected">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/backarrow"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@drawable/baseline_arrow_back_18"
+            android:backgroundTint="@color/white"
             android:onClick="back"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"/>
-        <ImageView
-            android:id="@+id/img"
-            android:layout_width="256dp"
-            android:layout_height="160dp"
-            android:layout_marginTop="10dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/AModelo"/>
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/autoCard"
+        android:layout_below="@id/backarrow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="35dp"
+        android:layout_margin="25dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="256dp"
+                android:layout_height="160dp"
+                android:layout_centerHorizontal="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Modelo"
+                android:id="@+id/AModelo"
+                android:layout_below="@id/img"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="22dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="placas"
+                android:id="@+id/APlacas"
+                android:layout_below="@id/AModelo"
+                android:layout_centerHorizontal="true"
+                android:textSize="14dp"/>
+            <LinearLayout
+                android:id="@+id/ll1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/APlacas"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="25dp">
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="2dp"
+                    android:backgroundTint="@color/white">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
 
+                        <ImageView
+                            android:id="@+id/gears"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            app:srcCompat="@drawable/gears"
+                            android:layout_centerHorizontal="true"/>
 
+                        <TextView
+                            android:id="@+id/transmision"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/gears"
+                            android:text="Transmisión"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"/>
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="2dp"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginStart="35dp">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+                        <ImageView
+                            android:id="@+id/door"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            app:srcCompat="@drawable/door"
+                            android:layout_centerHorizontal="true"/>
+                        <TextView
+                            android:id="@+id/puertas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/door"
+                            android:text="4 Puertas"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"/>
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="2dp"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginStart="35dp">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+                        <ImageView
+                            android:id="@+id/pass"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            app:srcCompat="@drawable/passenger"
+                            android:layout_centerHorizontal="true"/>
+                        <TextView
+                            android:id="@+id/pasajeros"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/pass"
+                            android:text="5 Pasajeros"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"/>
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fechas"
+        android:id="@+id/txtFechas"
+        android:layout_below="@id/autoCard"
+        android:layout_marginStart="25dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Modelo"
-            android:id="@+id/AModelo"
-            android:layout_below="@id/backarrow"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:textColor="@color/black"
-            android:textSize="22dp"/>
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/fechaCard"
+        android:layout_below="@id/txtFechas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="15dp"
+        android:layout_margin="25dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/date"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/date"
+                android:backgroundTint="@color/purple_700"
+                android:onClick="back"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_centerVertical="true"/>
+            <TextView
+                android:id="@+id/fechas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12-12-2020 - 15-12-2020"
+                android:textSize="18sp"
+                android:layout_toEndOf="@id/date"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="15dp"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ubicación"
+        android:id="@+id/txtubicacion"
+        android:layout_below="@id/fechaCard"
+        android:layout_marginStart="25dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
 
-        <TextView
-            android:id="@+id/ATipo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/img"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="39dp"
-            android:text="Tipo"
-            android:textColor="@color/black"
-            android:textSize="18dp" />
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/ubicacionCard"
+        android:layout_below="@id/txtubicacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/location"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/loc"
+                android:backgroundTint="@color/purple_700"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_centerVertical="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver ubicación"
+                android:textSize="18sp"
+                android:layout_toEndOf="@id/location"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="15dp"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ATipo"
-            android:layout_marginTop="30dp"
-            android:text="Placas"
-            android:textSize="18dp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/APlacas"/>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/APlacas"
-            android:layout_marginTop="30dp"
-            android:text="Transmisión"
-            android:textSize="18dp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/ATransmision"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ATransmision"
-            android:layout_marginTop="40dp"
-            android:text="Precio por día"
-            android:textSize="18dp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/APrecio"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/APrecio"
-            android:layout_marginTop="40dp"
-            android:text="Total>"
-            android:textSize="18dp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/ATotal"/>
+    <TextView
+        android:id="@+id/txtTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:text="Total"
+        android:layout_below="@id/ubicacionCard"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="25dp"/>
+    <TextView
+        android:id="@+id/ATotal"
+        android:layout_below="@id/txtTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$1200"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_alignStart="@id/txtTotal"/>
 
 
         <Button android:layout_height="wrap_content"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_below="@id/ATotal"
+            android:layout_alignBottom="@id/ATotal"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="25dp"
             android:background="@layout/boton_redondo"
             android:textColor="#FFF"
-            android:text="Pagar"
+            android:text="Realizar renta"
             android:id="@+id/btnPagar"/>
 
-
-        <TextView
-            android:id="@+id/tipo1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/img"
-            android:layout_marginLeft="200dp"
-            android:layout_marginTop="41dp"
-            android:text="1"
-            android:textColor="@color/black"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/tipo2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tipo1"
-            android:layout_marginLeft="200dp"
-            android:layout_marginTop="29dp"
-            android:text="1"
-            android:textColor="@color/black"
-            android:textSize="18dp" />
-
-
-
-        <TextView
-            android:id="@+id/tipo5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tipo2"
-            android:layout_marginLeft="200dp"
-            android:layout_marginTop="38dp"
-            android:text="1"
-            android:textColor="@color/black"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/tipo6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tipo5"
-            android:layout_marginLeft="200dp"
-            android:layout_marginTop="41dp"
-            android:text="1"
-            android:textColor="@color/black"
-            android:textSize="18dp" />
-        <TextView
-            android:id="@+id/tipo7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tipo6"
-            android:layout_marginLeft="200dp"
-            android:layout_marginTop="41dp"
-            android:text="1"
-            android:textColor="@color/black"
-            android:textSize="18dp" />
-
-
-    </RelativeLayout>
-</ScrollView>
+</RelativeLayout>

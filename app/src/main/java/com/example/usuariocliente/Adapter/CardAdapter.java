@@ -10,13 +10,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.usuariocliente.Models.Auto;
 import com.example.usuariocliente.Models.Card;
 import com.example.usuariocliente.Models.Globals;
 import com.example.usuariocliente.R;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,12 +28,26 @@ import static com.example.usuariocliente.Models.Globals.id_usuario;
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder> {
     List<Card> cards;
     ArrayList<Card> arrayList;
+    Boolean seleccionar;
+    String ubicacion, fecha_inicio, fecha_fin;
+    Auto autodata;
     Context c;
 
-    public CardAdapter(List<Card> cards) {
+    public CardAdapter(List<Card> cards, Boolean seleccionar) {
         this.cards = cards;
         this.arrayList = new ArrayList<>();
         this.arrayList.addAll(cards);
+        this.seleccionar = seleccionar;
+    }
+    public CardAdapter(List<Card> cards, Boolean seleccionar, String ubicacion, String fecha_inicio, String fecha_fin, Auto autodata) {
+        this.cards = cards;
+        this.arrayList = new ArrayList<>();
+        this.arrayList.addAll(cards);
+        this.seleccionar = seleccionar;
+        this.ubicacion = ubicacion;
+        this.fecha_inicio = fecha_inicio;
+        this.fecha_fin = fecha_fin;
+        this.autodata = autodata;
     }
 
     @NonNull
@@ -44,12 +61,29 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
-        holder.delete.setOnClickListener(v -> {
-            //eliminar tarjeta de la db
-            c = v.getContext();
-            Globals.deleteCard(cards.get(position).getNumero_tarjeta(),c);
-            Toast.makeText(c, "Espere un momento...", Toast.LENGTH_LONG).show();
-        });
+        if (!seleccionar){
+            holder.delete.setOnClickListener(v -> {
+                //eliminar tarjeta de la db
+                c = v.getContext();
+                new AlertDialog.Builder(c)
+                        .setTitle("Confirmar")
+                        .setMessage("¿Desea eliminar este método de pago? Esta acción no es reversible")
+                        .setNegativeButton(android.R.string.cancel, null) // dismiss
+                        .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                            Globals.deleteCard(cards.get(position).getNumero_tarjeta(),c);
+                            //Toast.makeText(c, "Espere un momento...", Toast.LENGTH_SHORT).show();
+                        })
+                        .create()
+                        .show();
+
+            });
+        }
+        if (seleccionar){
+            holder.delete.setVisibility(View.GONE);
+            holder.cv.setOnClickListener(v -> {
+                Globals.rentarAuto(c, ubicacion, fecha_inicio, fecha_fin, autodata);
+            });
+        }
         holder.n_tarjeta.setText("****    ****    ****    " + cards.get(position).getNumero_tarjeta().substring(cards.get(position).getNumero_tarjeta().length() - 4));
         holder.fecha_vencimiento.setText(cards.get(position).getFecha_vencimiento());
     }

@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListaRenta extends AppCompatActivity {
-    ImageView Back,Historial,Usuario,CerrarSesion;
     Intent i;
     RecyclerView rvRentas;
     List<Renta> rentasList = new ArrayList<>();
