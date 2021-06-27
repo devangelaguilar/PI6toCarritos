@@ -50,6 +50,7 @@ public class HistoryRentasAdapter extends RecyclerView.Adapter<HistoryRentasAdap
 
     @Override
     public void onBindViewHolder(@NonNull RentaViewHolder holder, int position) {
+        holder.txtUsuario.setText("Fecha: ");
         Auto auto = Globals.getAuto(c, rentas.get(position));
         Cliente cliente = Globals.getCliente(c, rentas.get(position));
         //List<Cliente> cliente = Globals.getCliente(c, rentasList.get(position));
@@ -86,7 +87,7 @@ public class HistoryRentasAdapter extends RecyclerView.Adapter<HistoryRentasAdap
 
     public static class RentaViewHolder extends RecyclerView.ViewHolder{
         CardView cv;
-        TextView nombre, usuario, placas;
+        TextView nombre, usuario, placas, txtUsuario;
         ImageView foto;
         Button entregar;
 
@@ -96,6 +97,7 @@ public class HistoryRentasAdapter extends RecyclerView.Adapter<HistoryRentasAdap
             nombre = itemView.findViewById(R.id.tvNombre_auto);
             foto = itemView.findViewById(R.id.ivAuto);
             usuario = itemView.findViewById(R.id.tvNombre_usuario);
+            txtUsuario = itemView.findViewById(R.id.txtUsuario);
             placas = itemView.findViewById(R.id.tvPlacas);
             entregar = itemView.findViewById(R.id.btnEntregar);
         }

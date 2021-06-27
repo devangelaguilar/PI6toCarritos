@@ -1,6 +1,7 @@
 package com.example.usuariocliente.Driver.Home;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,7 +31,8 @@ import static com.example.usuariocliente.Models.Globals.id_usuario;
 
 public class RentaSelected extends AppCompatActivity {
     Renta renta;
-    TextView modelo, placas, usuario, punto_de_entrega;
+    TextView modelo, placas, usuario, entrega;
+    CardView punto_de_entrega;
     ImageView foto;
     Button btn_entregar;
     @Override
@@ -41,6 +43,7 @@ public class RentaSelected extends AppCompatActivity {
         renta = (Renta) intent.getSerializableExtra("renta");
         Auto auto = Globals.getAuto(this, renta);
         Cliente cliente = Globals.getCliente(this, renta);
+        entrega = findViewById(R.id.txtEntrega);
         foto = findViewById(R.id.img);
         Glide.with(this).load("https://cinderellaride.000webhostapp.com/assets/img/autos/" + auto.getId_vehiculo() + ".png").asBitmap().into(foto);
         modelo = findViewById(R.id.modelo);
@@ -48,19 +51,18 @@ public class RentaSelected extends AppCompatActivity {
         placas = findViewById(R.id.placas);
         placas.setText(auto.getPlacas());
         usuario = findViewById(R.id.usuario);
-        usuario.setText(cliente.getNombres() + cliente.getApellido_paterno() + cliente.getApellido_materno());
+        usuario.setText(cliente.getNombres() + " " + cliente.getApellido_paterno() + " " + cliente.getApellido_materno());
         btn_entregar = findViewById(R.id.btn_entregar);
         punto_de_entrega = findViewById(R.id.punto_de_entrega);
+        punto_de_entrega.setOnClickListener(v -> {
+            Intent i = new Intent(this, MapActivity.class);
+            i.putExtra("Location", renta.getUbicacion());
+            startActivity(i);
+        });
         if(renta.getStatus() == 2) {
             btn_entregar.setText("RECOLECTAR");
-            punto_de_entrega.setText("Punto de recolección");
+            entrega.setText("Ver punto de Recolección");
         }
-    }
-
-    public void openLocation(View view) {
-        Intent i = new Intent(this, MapActivity.class);
-        i.putExtra("Location", renta.getUbicacion());
-        startActivity(i);
     }
 
     public void back(View view) {
@@ -77,6 +79,7 @@ public class RentaSelected extends AppCompatActivity {
     private void entrega(){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Globals.ip + "EntregarAuto.php", response -> {
             if (response.equals("MENSAJE")){
+                Toast.makeText(getApplicationContext(), "Vehículo entregado.", Toast.LENGTH_SHORT).show();
                 Globals.getClientes(this);
             } else {
                 Toast.makeText(getApplicationContext(), "" + response, Toast.LENGTH_SHORT).show();

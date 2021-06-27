@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.usuariocliente.Adapter.CardAdapter;
+import com.example.usuariocliente.Cliente.Options.AgregarCard;
 import com.example.usuariocliente.Models.Auto;
 import com.example.usuariocliente.Models.Card;
 import com.example.usuariocliente.Models.Globals;
@@ -34,6 +36,7 @@ public class SelectCard extends AppCompatActivity {
     RecyclerView rvCards;
     ImageView logo;
     TextView texto;
+    Button add_card;
     public static String ubicacion, fecha_inicio, fecha_fin;
     public static Auto autodata;
     @Override
@@ -46,7 +49,15 @@ public class SelectCard extends AppCompatActivity {
         fecha_inicio = i.getStringExtra("fecha_inicio");
         fecha_fin = i.getStringExtra("fecha_fin");
         autodata = (Auto) i.getSerializableExtra("autodata");
-
+        add_card = findViewById(R.id.addCard);
+        add_card.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AgregarCardRenta.class);
+            intent.putExtra("ubicacion", ubicacion);
+            intent.putExtra("fecha_inicio", fecha_inicio);
+            intent.putExtra("fecha_fin", fecha_fin);
+            intent.putExtra("autodata", autodata);
+            startActivity(intent);
+        });
         rvCards = findViewById(R.id.rvCards);
         rvCards.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
@@ -73,11 +84,15 @@ public class SelectCard extends AppCompatActivity {
                         if (tarjetaList.size() == 0){
                             logo.setVisibility(View.VISIBLE);
                             texto.setVisibility(View.VISIBLE);
+                            add_card.setVisibility(View.VISIBLE);
                         }
                         CardAdapter adapter = new CardAdapter(tarjetaList, true, ubicacion, fecha_inicio, fecha_fin, autodata);
                         rvCards.setAdapter(adapter);
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        logo.setVisibility(View.VISIBLE);
+                        texto.setVisibility(View.VISIBLE);
+                        add_card.setVisibility(View.VISIBLE);
                         Toast.makeText(this, "Ingrese un Método de pago", Toast.LENGTH_SHORT).show();
                     }
                 },

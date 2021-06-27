@@ -26,7 +26,7 @@ import java.util.Map;
 
 public class Bitacora extends AppCompatActivity {
     Renta renta;
-    TextView modelo, placas;
+    TextView modelo, placas, usuario;
     EditText km, notas;
     ImageView foto;
     @Override
@@ -43,6 +43,8 @@ public class Bitacora extends AppCompatActivity {
         modelo.setText(auto.getModelo());
         placas = findViewById(R.id.placas);
         placas.setText(auto.getPlacas());
+        usuario = findViewById(R.id.usuario);
+        usuario.setText(cliente.getNombres() + " " + cliente.getApellido_paterno() + " " + cliente.getApellido_materno());
 
         km = findViewById(R.id.km);
         notas = findViewById(R.id.notas);
@@ -73,4 +75,6 @@ public class Bitacora extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(stringRequest);
     }
+
+    public void back(View view) { finish(); }
 }

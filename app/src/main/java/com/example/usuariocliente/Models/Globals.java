@@ -348,7 +348,6 @@ public class Globals {
                 Toast.makeText(c, "Por favor, espere a que el vehículo sea entregado en su ubicación", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(c, ClienteMenu.class);
                 c.startActivity(i);
-                ((SelectCard)c).finish();
             } else {
                 Toast.makeText(c, "" + response, Toast.LENGTH_SHORT).show();
             }

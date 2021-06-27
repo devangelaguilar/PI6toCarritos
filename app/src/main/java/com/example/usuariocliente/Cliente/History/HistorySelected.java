@@ -1,6 +1,7 @@
 package com.example.usuariocliente.Cliente.History;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +20,8 @@ import com.example.usuariocliente.R;
 
 public class HistorySelected extends AppCompatActivity {
     Renta renta;
-    TextView modelo, placas, usuario;
+    TextView modelo, placas, fecha;
+    CardView ubicacionCard;
     ImageView foto;
 
     @Override
@@ -36,16 +38,15 @@ public class HistorySelected extends AppCompatActivity {
         modelo.setText(auto.getModelo());
         placas = findViewById(R.id.placas);
         placas.setText(auto.getPlacas());
-        usuario = findViewById(R.id.usuario);
-        usuario.setText(renta.getFecha_inicio() + " / " + renta.getFecha_fin());
+        fecha = findViewById(R.id.fecha);
+        fecha.setText(renta.getFecha_inicio() + " - " + renta.getFecha_fin());
+        ubicacionCard = findViewById(R.id.ubicacionCard);
+        ubicacionCard.setOnClickListener(v -> {
+            Intent i = new Intent(this, MapActivity.class);
+            i.putExtra("Location", renta.getUbicacion());
+            startActivity(i);
+        });
     }
-
-    public void openLocation(View view) {
-        Intent i = new Intent(this, MapActivity.class);
-        i.putExtra("Location", renta.getUbicacion());
-        startActivity(i);
-    }
-
     public void back(View view) {
         finish();
     }

@@ -45,6 +45,7 @@ public class HistoryRentasClienteAdapter extends RecyclerView.Adapter<HistoryRen
 
     @Override
     public void onBindViewHolder(@NonNull RentaViewHolder holder, int position) {
+        holder.txtUsuario.setText("Fecha: ");
         Auto auto = Globals.getAuto(c, rentas.get(position));
         //List<Cliente> cliente = Globals.getCliente(c, rentasList.get(position));
         Glide.with(c).load("https://cinderellaride.000webhostapp.com/assets/img/autos/" + auto.getId_vehiculo() + ".png").asBitmap().into(holder.foto);
@@ -78,7 +79,7 @@ public class HistoryRentasClienteAdapter extends RecyclerView.Adapter<HistoryRen
 
     public static class RentaViewHolder extends RecyclerView.ViewHolder{
         CardView cv;
-        TextView nombre, usuario, placas;
+        TextView nombre, usuario, placas, txtUsuario;
         ImageView foto;
         Button entregar;
 
@@ -88,6 +89,7 @@ public class HistoryRentasClienteAdapter extends RecyclerView.Adapter<HistoryRen
             nombre = itemView.findViewById(R.id.tvNombre_auto);
             foto = itemView.findViewById(R.id.ivAuto);
             usuario = itemView.findViewById(R.id.tvNombre_usuario);
+            txtUsuario = itemView.findViewById(R.id.txtUsuario);
             placas = itemView.findViewById(R.id.tvPlacas);
             entregar = itemView.findViewById(R.id.btnEntregar);
         }

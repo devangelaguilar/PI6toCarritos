@@ -6,14 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/car_info"
     tools:context=".Cliente.Home.AutoSelected">
-        <ImageView
-            android:id="@+id/backarrow"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/baseline_arrow_back_18"
-            android:backgroundTint="@color/white"
-            android:onClick="back"
-            android:layout_marginStart="10dp"/>
+    <ImageView
+        android:id="@+id/backarrow"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/baseline_arrow_back_18"
+        android:backgroundTint="@color/white"
+        android:onClick="back"
+        android:layout_marginStart="10dp"/>
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/autoCard"
         android:layout_below="@id/backarrow"
@@ -247,17 +247,17 @@
         android:layout_alignStart="@id/txtTotal"/>
 
 
-        <Button android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_alignBottom="@id/ATotal"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="25dp"
-            android:background="@layout/boton_redondo"
-            android:textColor="#FFF"
-            android:text="Realizar renta"
-            android:id="@+id/btnPagar"/>
+    <Button android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignBottom="@id/ATotal"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="25dp"
+        android:background="@layout/boton_redondo"
+        android:textColor="#FFF"
+        android:text="Realizar renta"
+        android:id="@+id/btnPagar"/>
 
 </RelativeLayout>

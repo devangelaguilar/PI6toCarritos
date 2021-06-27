@@ -1,6 +1,7 @@
 package com.example.usuariocliente.Driver.History;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.example.usuariocliente.R;
 public class DriverHistorySelected extends AppCompatActivity {
     Renta renta;
     TextView modelo, placas, usuario;
+    CardView ubicacion;
     ImageView foto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +40,12 @@ public class DriverHistorySelected extends AppCompatActivity {
         placas.setText(auto.getPlacas());
         usuario = findViewById(R.id.usuario);
         usuario.setText(cliente.getNombres() + " " + cliente.getApellido_paterno() + " " + cliente.getApellido_materno());
-    }
-
-    public void openLocation(View view) {
-        Intent i = new Intent(this, MapActivity.class);
-        i.putExtra("Location", renta.getUbicacion());
-        startActivity(i);
+        ubicacion = findViewById(R.id.ubicacionCard);
+        ubicacion.setOnClickListener(v -> {
+            Intent i = new Intent(this, MapActivity.class);
+            i.putExtra("Location", renta.getUbicacion());
+            startActivity(i);
+        });
     }
 
     public void back(View view) {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/car_info"
     tools:context=".Driver.History.DriverHistorySelected">
 
     <ImageView
@@ -12,73 +12,133 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="@drawable/baseline_arrow_back_18"
+        android:backgroundTint="@color/white"
         android:onClick="back"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"/>
-
-    <ImageView
-        android:id="@+id/img"
-        android:layout_width="256dp"
-        android:layout_height="160dp"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/backarrow"/>
-
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/autoCard"
+        android:layout_below="@id/backarrow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="35dp"
+        android:layout_margin="25dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="256dp"
+                android:layout_height="160dp"
+                android:layout_centerHorizontal="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Modelo"
+                android:id="@+id/modelo"
+                android:layout_below="@id/img"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="22dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="placas"
+                android:id="@+id/placas"
+                android:layout_below="@id/modelo"
+                android:layout_centerHorizontal="true"
+                android:textSize="14dp"
+                android:layout_marginBottom="20dp"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
-        android:id="@+id/modelo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/img"
-        android:text="modelo"
-        android:textSize="26sp"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="10dp"
-        android:textColor="@color/black"/>
-
-    <TextView
-        android:id="@+id/placas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/modelo"
-        android:text="placas"
-        android:textSize="26sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:textColor="@color/black"/>
-
-    <TextView
-        android:id="@+id/usuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/placas"
-        android:text="usuario"
-        android:textSize="26sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:textColor="@color/black"/>
-
-    <ImageView
-        android:id="@+id/location"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/location"
-        android:layout_marginTop="30dp"
-        android:layout_below="@id/usuario"
-        android:onClick="openLocation"/>
-    <TextView
-        android:id="@+id/punto_de_entrega"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/usuario"
-        android:layout_toEndOf="@id/location"
-        android:text="Ver punto de entrega"
-        android:textSize="30sp"
-        android:layout_marginTop="31dp"
-        android:layout_marginStart="10dp"
+        android:text="Cliente"
+        android:id="@+id/txtFechas"
+        android:layout_below="@id/autoCard"
+        android:layout_marginStart="25dp"
+        android:textColor="@color/black"
         android:textStyle="bold"
-        android:textColor="@color/purple_200"
-        android:onClick="openLocation"/>
+        android:textSize="20dp"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/fechaCard"
+        android:layout_below="@id/txtFechas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="15dp"
+        android:layout_margin="25dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/date"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/user"
+                android:backgroundTint="@color/purple_700"
+                android:onClick="back"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_centerVertical="true"/>
+            <TextView
+                android:id="@+id/usuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daniel Montes de OCa Solis"
+                android:textSize="18sp"
+                android:layout_toEndOf="@id/date"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="15dp"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ubicación"
+        android:id="@+id/txtubicacion"
+        android:layout_below="@id/fechaCard"
+        android:layout_marginStart="25dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/punto_de_entrega"
+        android:layout_below="@id/txtubicacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/location"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/loc"
+                android:backgroundTint="@color/purple_700"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_centerVertical="true"/>
+            <TextView
+                android:id="@+id/txtEntrega"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver ubicación de entrega"
+                android:textSize="18sp"
+                android:layout_toEndOf="@id/location"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="15dp"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 
 </RelativeLayout>
