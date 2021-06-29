@@ -1,0 +1,65 @@
+<?php
+
+    //require("conexion.php");
+    $mysqli = new mysqli(
+        "localhost",
+        "id16405021_crideuser",
+        "HB\l*#e3dHhYn8?G",
+        "id16405021_cride"
+    );
+	$conn = mysqli_connect("localhost", "id16405021_crideuser", "HB\l*#e3dHhYn8?G", "id16405021_cride");
+
+    // RECIBE LOS DATOS DE LA APP
+    
+	//$clase_usuario = $_POST["clase_usuario"];
+	//$correo = $_POST["correo"];
+	//$password  = $_POST["password"];
+	//$nombres  = $_POST["nombres"];	
+	//$apellido_paterno  = $_POST["apellido_paterno"];
+	//$apellido_materno = $_POST["apellido_materno"];
+	//$telefono  = $_POST["telefono"];
+	//$direccion  = $_POST["direccion"];
+	//$fecha_de_nacimiento = $_POST["fecha_de_nacimiento"];
+	//$licencia = $_POST["licencia"];
+	
+//test values
+	$correo = 'test';
+	$password  = '12341234';
+	$nombres  = 'test';	
+	$apellido_paterno  = 'test';
+	$apellido_materno = 'test';
+	$telefono  = 'test';
+	//$direccion  = 'test';
+	$fecha_de_nacimiento = '12341234';
+	$licencia = '12341234';
+
+
+
+	$password = password_hash($password, PASSWORD_BCRYPT);
+
+	
+
+    // VERIFICAMOS QUE NO ESTEN VACIAS LAS VARIABLES
+    if(empty($nombres) || empty($apellido_paterno)||  empty($apellido_materno)|| empty($telefono)|| empty($fecha_de_nacimiento)) {
+
+        // SI ALGUNA VARIABLE ESTA VACIA MUESTRA ERROR
+        //echo "Se deben llenar los dos campos";
+        echo "ERROR 1";
+
+    } else {
+
+        // CREAMOS LA CONSULTA
+        $sql = "INSERT INTO usuario(clase_usuario,correo,password,nombres,apellido_paterno,apellido_materno,telefono,direccion,fecha_de_nacimiento,licencia) 
+        VALUES ('1','$correo','$password','$nombres','$apellido_paterno','$apellido_materno','$telefono','Generico','$fecha_de_nacimiento','$licencia')";
+
+        $query = $mysqli->query($sql);
+
+        if($query === TRUE) {
+
+            echo "MENSAJE";
+
+        }
+        
+    }
+
+?>
